@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f7f6f0;
+  color: #10231d;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.onboarding {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.card {
+  width: min(430px, 100%);
+  background: white;
+  padding: 36px;
+  border-radius: 28px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+  text-align: center;
+}
+
+.logo {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.eyebrow {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+h1 {
+  font-size: 32px;
+  margin: 12px 0;
+}
+
+p {
+  line-height: 1.6;
+}
+
+.btn-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+button {
+  border: none;
+  border-radius: 999px;
+  padding: 14px 22px;
+  background: #123c2f;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+button.secondary {
+  background: #e8ede9;
+  color: #123c2f;
+}
+
+input {
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 14px;
+  font-size: 16px;
+}
+
+.home {
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hero {
+  margin-top: 120px;
+  max-width: 780px;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 8vw, 90px);
+}
