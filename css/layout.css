@@ -1,0 +1,80 @@
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+}
+
+.sidebar {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  padding: 28px 20px;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+.brand-icon {
+  font-size: 32px;
+}
+
+.brand h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.brand p {
+  margin: 4px 0 0;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.side-nav {
+  display: grid;
+  gap: 10px;
+}
+
+.nav-item {
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 16px;
+  background: transparent;
+  color: #10231d;
+  padding: 14px 16px;
+}
+
+.nav-item.active {
+  background: #123c2f;
+  color: white;
+}
+
+.sidebar-bottom {
+  display: grid;
+  gap: 12px;
+}
+
+#sidebarName {
+  color: #6b7280;
+  margin: 0;
+}
+
+.page-content {
+  padding: 40px;
+}
+
+.placeholder-page,
+.home-page {
+  max-width: 900px;
+}

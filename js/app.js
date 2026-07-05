@@ -15,9 +15,23 @@ const text = {
     hello: "Hi",
     ready: "Ready for the adventure?",
     startJourney: "Start Journey",
+
     homeTitle: "New Zealand Adventure Awaits",
-    homeDesc: "Auckland to Christchurch, planned day by day."
+    homeDesc: "Auckland to Christchurch, planned day by day.",
+
+    nav: {
+      home: "Home",
+      itinerary: "Itinerary",
+      explore: "Explore",
+      memories: "Memories",
+      tripHub: "Trip Hub",
+      checklist: "Checklist"
+    },
+
+    comingSoon: "Coming Soon",
+    sectionBuiltNext: "This section will be built next."
   },
+
   zh: {
     welcomeTitle: "欢迎来到新西兰",
     welcomeDesc: "你的家庭自驾游行程助手：2026年10月9日至23日。",
@@ -29,8 +43,21 @@ const text = {
     hello: "你好",
     ready: "准备好开始旅程了吗？",
     startJourney: "开始旅程",
+
     homeTitle: "新西兰冒险之旅",
-    homeDesc: "从奥克兰到基督城，每一天都为你规划好。"
+    homeDesc: "从奥克兰到基督城，每一天都为你规划好。",
+
+    nav: {
+      home: "首页",
+      itinerary: "行程",
+      explore: "探索",
+      memories: "回忆",
+      tripHub: "旅行中心",
+      checklist: "清单"
+    },
+
+    comingSoon: "即将推出",
+    sectionBuiltNext: "这个部分会稍后完成。"
   }
 };
 
@@ -130,24 +157,7 @@ function renderReady() {
 }
 
 function renderHome() {
-  const t = text[language];
-
-  app.innerHTML = `
-    <section class="home">
-      <nav class="navbar">
-        <strong>NZ Itinerary</strong>
-        <button id="switchLanguageBtn">${language === "en" ? "中文" : "English"}</button>
-      </nav>
-
-      <section class="hero">
-        <p class="eyebrow">Auckland → Christchurch</p>
-        <h1>${t.homeTitle}</h1>
-        <p>${t.homeDesc}</p>
-      </section>
-    </section>
-  `;
-
-  document.getElementById("switchLanguageBtn").addEventListener("click", switchLanguage);
+  renderLayout("home");
 }
 
 function switchLanguage() {
