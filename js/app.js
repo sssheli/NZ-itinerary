@@ -6,7 +6,7 @@ let travellerName = localStorage.getItem("travellerName");
 const text = {
   en: {
     welcomeTitle: "Welcome to New Zealand",
-    welcomeDesc: "Your family road trip companion for 9–23 October 2026.",
+    welcomeDesc: "Your family road trip companion for 10–23 September 2026.",
     getStarted: "Get Started",
     chooseLanguage: "Choose your language",
     nameTitle: "What should we call you?",
@@ -34,7 +34,7 @@ const text = {
 
   zh: {
     welcomeTitle: "欢迎来到新西兰",
-    welcomeDesc: "你的家庭自驾游行程助手：2026年10月9日至23日。",
+    welcomeDesc: "你的家庭自驾游行程助手：2026年9月10日至23日。",
     getStarted: "开始",
     chooseLanguage: "请选择语言",
     nameTitle: "请问怎么称呼你？",

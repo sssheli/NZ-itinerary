@@ -31,13 +31,29 @@ function renderPage(page) {
 
   if (page === "home") {
     renderHomePage(pageContent);
-  } else {
-    pageContent.innerHTML = `
-      <section class="placeholder-page">
-        <p class="eyebrow">${t.comingSoon}</p>
-        <h1>${t.nav[page]}</h1>
-        <p>${t.sectionBuiltNext}</p>
-      </section>
-    `;
+    return;
   }
+
+  if (page === "itinerary") {
+    renderItineraryPage(pageContent);
+    return;
+  }
+
+  pageContent.innerHTML = `
+    <section class="placeholder-page">
+      <p class="eyebrow">${t.comingSoon}</p>
+      <h1>${t.nav[page]}</h1>
+      <p>${t.sectionBuiltNext}</p>
+    </section>
+  `;
+}
+
+function renderItineraryPage(container) {
+  container.innerHTML = `
+    <section class="placeholder-page">
+      <p class="eyebrow">Itinerary</p>
+      <h1>Coming Soon</h1>
+      <p>The full itinerary page will be rebuilt using the new trip data.</p>
+    </section>
+  `;
 }

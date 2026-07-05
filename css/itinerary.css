@@ -1,0 +1,100 @@
+.itinerary-page{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:28px;
+
+}
+
+.itinerary-header{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+
+}
+
+.itinerary-header h1{
+
+    font-size:56px;
+
+    margin:0;
+
+    color:#203126;
+
+}
+
+.itinerary-subtitle{
+
+    margin-bottom:8px;
+
+    color:#61736A;
+
+    letter-spacing:.08em;
+
+    text-transform:uppercase;
+
+    font-size:.9rem;
+
+}
+
+.day-selector{
+
+    display:flex;
+
+    gap:14px;
+
+    overflow-x:auto;
+
+    padding-bottom:6px;
+
+}
+
+.day-pill{
+
+    border:none;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:16px 22px;
+
+    cursor:pointer;
+
+    min-width:110px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
+
+    transition:.25s;
+
+}
+
+.day-pill:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.day-pill.active{
+
+    background:#234F3F;
+
+    color:white;
+
+}
+
+.day-pill span{
+
+    display:block;
+
+    font-weight:700;
+
+}
+
+.day-pill small{
+
+    opacity:.75;
+
+}
