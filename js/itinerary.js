@@ -1,5 +1,31 @@
 let selectedDay = 0;
 
+function getDayIcon(city) {
+
+    switch(city) {
+
+        case "Auckland":
+            return "🏙️";
+
+        case "Taupo":
+            return "🚗";
+
+        case "Wellington":
+            return "🌊";
+
+        case "Queenstown":
+            return "🏔️";
+
+        case "Christchurch":
+            return "🌸";
+
+        default:
+            return "📍";
+
+    }
+
+}
+
 function renderItineraryPage(container) {
     const currentDay = tripData.days[selectedDay];
 
@@ -25,8 +51,22 @@ function renderItineraryPage(container) {
           class="day-pill ${index === selectedDay ? "active" : ""}"
           data-day="${index}"
         >
-          <span>Day ${day.day}</span>
-          <small>${day.displayDate}</small>
+          <div
+            class="day-pill-image"
+            style="background-image:url('${day.banner}')"
+          ></div>
+
+        <div class="day-pill-content">
+
+            <span>
+                ${getDayIcon(day.city)} ${day.city}
+            </span>
+
+            <small>
+                Day ${day.day} • ${day.displayDate}
+            </small>
+
+        </div>
         </button>
       `).join("")}
 

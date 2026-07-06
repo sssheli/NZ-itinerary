@@ -119,21 +119,25 @@
 
 .day-pill{
 
-    border:none;
+    background:#f8f8f6;
 
-    background:white;
+    border:1px solid #e5e7eb;
 
-    border-radius:18px;
+    border-radius:20px;
 
-    padding:16px 22px;
+    overflow:hidden;
+
+    padding:0;
+
+    width:180px;
+
+    min-width:180px;
+
+    transition:.25s;
 
     cursor:pointer;
 
-    min-width:110px;
-
-    box-shadow:0 8px 20px rgba(0,0,0,.06);
-
-    transition:.25s;
+    text-align:left;
 
 }
 
@@ -141,13 +145,17 @@
 
     transform:translateY(-3px);
 
+    box-shadow:0 14px 35px rgba(0,0,0,.10);
+
 }
 
 .day-pill.active{
 
-    background:#234F3F;
+    transform:translateY(-4px);
 
-    color:white;
+    border:2px solid #234F3F;
+
+    box-shadow:0 16px 40px rgba(35,79,63,.18);
 
 }
 
@@ -157,11 +165,40 @@
 
     font-weight:700;
 
+    color:#234F3F;
+
+    margin-bottom:6px;
+
 }
 
 .day-pill small{
 
-    opacity:.75;
+    color:#647067;
+
+    font-size:13px;
+
+}
+
+.day-pill-image {
+  height: 90px;
+  background: linear-gradient(135deg, #dfe9e2, #eef3ef);
+  background-size: cover;
+  background-position: center;
+}
+
+.day-pill-image::after {
+  content: "NZ";
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: #7b8f84;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.day-pill-content{
+
+    padding:16px;
 
 }
 
