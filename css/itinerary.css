@@ -186,15 +186,6 @@
   background-position: center;
 }
 
-.day-pill-image::after {
-  content: "NZ";
-  height: 100%;
-  display: grid;
-  place-items: center;
-  color: #7b8f84;
-  font-weight: 800;
-  letter-spacing: 2px;
-}
 
 .day-pill-content{
 

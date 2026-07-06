@@ -1,4 +1,5 @@
 let selectedDay = 0;
+let daySelectorScrollPosition = 0;
 
 function getDayIcon(city) {
 
@@ -225,16 +226,55 @@ function renderItineraryPage(container) {
   </section>
 `;
 
+const daySelector = document.querySelector(".day-selector");
+
+if (daySelector) {
+
+    daySelector.scrollLeft = daySelectorScrollPosition;
+
+    daySelector.addEventListener("scroll", () => {
+        daySelectorScrollPosition = daySelector.scrollLeft;
+    });
+
+}
+
     document.querySelectorAll(".day-pill").forEach(button => {
 
         button.addEventListener("click", () => {
+
+            const currentDaySelector = document.querySelector(".day-selector");
+
+            if (currentDaySelector) {
+                daySelectorScrollPosition = currentDaySelector.scrollLeft;
+            }
 
             selectedDay = Number(button.dataset.day);
 
             renderItineraryPage(container);
 
+            requestAnimationFrame(() => {
+
+                const newDaySelector = document.querySelector(".day-selector");
+
+                if (newDaySelector) {
+                    newDaySelector.scrollLeft = daySelectorScrollPosition;
+                }
+
+            });
+
+            setTimeout(() => {
+
+                const newDaySelector = document.querySelector(".day-selector");
+
+                if (newDaySelector) {
+                    newDaySelector.scrollLeft = daySelectorScrollPosition;
+                }
+
+            }, 50);
+
         });
 
     });
+
 
 }

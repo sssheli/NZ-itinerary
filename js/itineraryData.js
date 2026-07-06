@@ -13,7 +13,7 @@ const tripData = {
     city: "Auckland",
     title: "Arrival in Auckland",
     summary: "Arrive in Auckland, collect the rental car, check in and settle down.",
-    banner: "images/banners/day01-auckland.jpg",
+    banner: "images/banners/day01-auckland.png",
 
     accommodation: {
         name: "Avani Auckland Metropolis Residence",
@@ -124,7 +124,7 @@ const tripData = {
     city: "Taupo",
     title: "Auckland to Taupo",
     summary: "Drive from Auckland to Taupo with scenic stops, honey tasting and Huka Falls.",
-    banner: "images/banners/day02-taupo.jpg",
+    banner: "images/banners/day02-taupo.png",
 
     accommodation: {
         name: "Acacia Lake View Motel",
@@ -269,7 +269,7 @@ const tripData = {
     city: "Wellington",
     title: "Taupo to Wellington",
     summary: "A long drive from Taupo to Wellington with town stops, food breaks and Mount Victoria if time allows.",
-    banner: "images/banners/day03-wellington.jpg",
+    banner: "images/banners/day03-wellington.png",
 
     accommodation: {
         name: "Sojourn Apartment Hotel Ghuznee",
@@ -425,7 +425,7 @@ const tripData = {
     city: "Wellington",
     title: "Wellington Day Trip",
     summary: "Explore Cape Palliser Lighthouse, fur seal colony, waterfront walks and food options around Wellington.",
-    banner: "images/banners/day04-wellington.jpg",
+    banner: "images/banners/day04-wellington.png",
 
     accommodation: {
         name: "Sojourn Apartment Hotel Ghuznee",
@@ -573,7 +573,7 @@ const tripData = {
     city: "Queenstown",
     title: "Wellington to Queenstown",
     summary: "Check out from Wellington, fly to Queenstown, collect the rental car and settle into the Airbnb.",
-    banner: "images/banners/day05-queenstown.jpg",
+    banner: "images/banners/day05-queenstown.png",
 
     accommodation: {
         name: "Contemporary & Plush - 4 Bedroom House",
@@ -704,7 +704,7 @@ const tripData = {
         city: "Queenstown",
         title: "Arrowtown and Wanaka",
         summary: "Explore Arrowtown, Crown Range Summit, Wānaka Tree, Puzzling World and optional Wānaka activities.",
-        banner: "images/banners/day06-wanaka.jpg",
+        banner: "images/banners/day06-wanaka.png",
 
         accommodation: {
             name: "Contemporary & Plush - 4 Bedroom House",
@@ -859,7 +859,7 @@ const tripData = {
         city: "Queenstown",
         title: "Blue Pools and Thunder Creek Falls",
         summary: "Start early for a long scenic day trip to Blue Pools and Thunder Creek Falls.",
-        banner: "images/banners/day07-blue-pools.jpg",
+        banner: "images/banners/day07-blue-pools.png",
 
         accommodation: {
             name: "Contemporary & Plush - 4 Bedroom House",
@@ -966,7 +966,7 @@ const tripData = {
         city: "Queenstown",
         title: "Glenorchy Day",
         summary: "Visit Glenorchy lakefront, the red boat shed, the scenic walkway, cafés and local shops.",
-        banner: "images/banners/day08-glenorchy.jpg",
+        banner: "images/banners/day08-glenorchy.png",
 
         accommodation: {
             name: "Contemporary & Plush - 4 Bedroom House",
@@ -1117,7 +1117,7 @@ const tripData = {
     city: "Twizel",
     title: "Queenstown to Twizel",
     summary: "Check out from Queenstown and drive to Twizel with stops at Cromwell, Highlands and Lake Pukaki.",
-    banner: "images/banners/day09-twizel.jpg",
+    banner: "images/banners/day09-twizel.png",
 
     accommodation: {
         name: "Alps Motel",
@@ -1254,7 +1254,7 @@ const tripData = {
     city: "Twizel",
     title: "Hooker Valley and Lake Tekapo",
     summary: "Start very early for Hooker Valley Walk, Kea Point and Lake Tekapo.",
-    banner: "images/banners/day10-hooker-valley.jpg",
+    banner: "images/banners/day10-hooker-valley.png",
 
     accommodation: {
         name: "Alps Motel",
@@ -1363,7 +1363,7 @@ const tripData = {
     city: "Christchurch",
     title: "Twizel to Christchurch",
     summary: "Check out from Twizel and drive to Christchurch via Rakaia Gorge, Fairlie and Geraldine.",
-    banner: "images/banners/day11-christchurch.jpg",
+    banner: "images/banners/day11-christchurch.png",
 
     accommodation: {
         name: "Quest On Manchester",
@@ -1503,7 +1503,7 @@ const tripData = {
     city: "Christchurch",
     title: "Castle Hill and Arthur's Pass",
     summary: "Drive from Christchurch to Castle Hill, Arthur's Pass and Otira Viaduct Lookout, with garden options if time allows.",
-    banner: "images/banners/day12-arthurs-pass.jpg",
+    banner: "images/banners/day12-arthurs-pass.png",
 
     accommodation: {
         name: "Quest On Manchester",
@@ -1640,7 +1640,7 @@ const tripData = {
     city: "Christchurch",
     title: "Akaroa Day Trip",
     summary: "Spend the day exploring Akaroa before returning to Christchurch CBD and the Botanic Garden.",
-    banner: "images/banners/day13-akaroa.jpg",
+    banner: "images/banners/day13-akaroa.png",
 
     accommodation: {
         name: "Quest On Manchester",
@@ -1747,7 +1747,7 @@ const tripData = {
     city: "Christchurch",
     title: "Return to Singapore",
     summary: "Check out, return the rental car and fly home to Singapore.",
-    banner: "images/banners/day14-home.jpg",
+    banner: "images/banners/day14-home.png",
 
     accommodation: {
         name: "Quest On Manchester",
