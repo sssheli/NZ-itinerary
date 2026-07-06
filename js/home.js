@@ -1,5 +1,30 @@
 function getUpcomingTripDay() {
-  return tripData.days[0];
+  // Month is 0-based in JavaScript, so 8 = September
+  const tripStartDate = new Date(2026, 8, 10);
+
+  const today = new Date();
+
+  const startOfToday = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate()
+  );
+
+  const difference = startOfToday - tripStartDate;
+  const dayIndex = Math.floor(difference / (1000 * 60 * 60 * 24));
+
+  // Before trip starts, show Day 1
+  if (dayIndex < 0) {
+    return tripData.days[0];
+  }
+
+  // During trip, show the correct day
+  if (dayIndex < tripData.days.length) {
+    return tripData.days[dayIndex];
+  }
+
+  // After trip ends, show final day
+  return tripData.days[tripData.days.length - 1];
 }
 
 function calculateDaysLeft() {
@@ -91,7 +116,7 @@ function getHomeText() {
 
       todayTitle: "Today at a Glance",
       viewFull: "View Full Itinerary",
-      dayLabel: `Day ${currentDay.day} · 10 Sep 2026`,
+      dayLabel: `Day ${currentDay.day} · ${currentDay.displayDate}`,
       todayCity: currentDay.city,
       todayDesc: currentDay.title || "Welcome to New Zealand!",
 
@@ -124,7 +149,7 @@ function getHomeText() {
 
       todayTitle: "今日行程概览",
       viewFull: "查看完整行程",
-      dayLabel: `第 ${currentDay.day} 天 · 2026年9月10日`,
+      dayLabel: `第 ${currentDay.day} 天 · ${currentDay.displayDate}`,
       todayCity: currentDay.city,
       todayDesc: currentDay.title || "欢迎来到新西兰！",
 
