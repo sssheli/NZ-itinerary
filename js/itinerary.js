@@ -13,7 +13,7 @@ function renderItineraryPage(container) {
                         Auckland → Christchurch • 10–23 Sep 2026
                     </p>
 
-                    <h1>Itinerary</h1>
+                    <h1>Day ${currentDay.day} - ${currentDay.city}</h1>
                 </div>
 
             </div>
@@ -30,6 +30,29 @@ function renderItineraryPage(container) {
                     </button>
                 `).join("")}
 
+            </div>
+
+            <div
+              class="day-hero"
+              style="background-image: url('${currentDay.banner}')"
+            >
+              <div class="day-overlay">
+                <p class="day-weekday">
+                ${currentDay.weekday}
+                </p>
+
+                <h2>
+                ${currentDay.displayDate}
+                </h2>
+
+                <h1>
+                ${currentDay.city}
+                </h1>
+
+                <p class="day-summary">
+                ${currentDay.summary}
+                </p>
+              </div>
             </div>
 
         </section>

@@ -47,13 +47,3 @@ function renderPage(page) {
     </section>
   `;
 }
-
-function renderItineraryPage(container) {
-  container.innerHTML = `
-    <section class="placeholder-page">
-      <p class="eyebrow">Itinerary</p>
-      <h1>Coming Soon</h1>
-      <p>The full itinerary page will be rebuilt using the new trip data.</p>
-    </section>
-  `;
-}

@@ -12,6 +12,7 @@ const tripData = {
       city: "Auckland",
       title: "Arrival in Auckland",
       summary: "Arrive in Auckland, collect the rental car, check in and settle down.",
+      banner: "images/banners/auckland.jpg",
 
       accommodation: {
         name: "Avani Auckland Metropolis Residence",
