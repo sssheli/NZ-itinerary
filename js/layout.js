@@ -54,6 +54,11 @@ function renderPage(page) {
     return;
   }
 
+  if (page === "memories") {
+    renderMemoriesPage(pageContent);
+    return;
+ }
+
   pageContent.innerHTML = `
     <section class="placeholder-page">
       <p class="eyebrow">${t.comingSoon}</p>

@@ -1,0 +1,464 @@
+.memories-page {
+  display: grid;
+  gap: 28px;
+}
+
+.memories-hero {
+  background: linear-gradient(135deg, #173a2f, #315f4f);
+  color: white;
+  border-radius: 30px;
+  padding: 42px;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: center;
+  box-shadow: 0 16px 40px rgba(0,0,0,.12);
+}
+
+.memories-subtitle {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  opacity: .8;
+  font-size: .85rem;
+}
+
+.memories-hero h1 {
+  margin: 12px 0;
+  font-size: 52px;
+}
+
+.memories-hero p {
+  max-width: 680px;
+  line-height: 1.7;
+  opacity: .9;
+}
+
+.memory-trip-code {
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 24px;
+  padding: 24px;
+  min-width: 180px;
+  backdrop-filter: blur(14px);
+}
+
+.memory-trip-code span {
+  display: block;
+  opacity: .75;
+  margin-bottom: 8px;
+  font-size: .85rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.memory-trip-code strong {
+  font-size: 34px;
+}
+
+.memories-loading-card,
+.memory-upload-card,
+.empty-memories {
+  background: white;
+  border-radius: 26px;
+  padding: 28px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.07);
+}
+
+.memory-upload-card {
+  display: grid;
+  gap: 22px;
+}
+
+.memory-upload-card h2 {
+  margin: 0 0 8px;
+  color: #173a2f;
+}
+
+.memory-upload-card p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.memory-upload-form {
+  display: grid;
+  gap: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.memory-upload-form label {
+  display: grid;
+  gap: 8px;
+  color: #355c4d;
+  font-weight: 800;
+}
+
+.memory-upload-form input,
+.memory-upload-form select {
+  border: none;
+  background: #f8faf9;
+  border-radius: 16px;
+  padding: 15px 18px;
+  font-size: 15px;
+  color: #173a2f;
+  outline: none;
+}
+
+.memory-upload-form input:focus,
+.memory-upload-form select:focus {
+  box-shadow: 0 0 0 3px rgba(53,92,77,.15);
+}
+
+.memory-upload-form button {
+  justify-self: start;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 26px;
+  background: #355c4d;
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.memory-upload-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(53,92,77,.22);
+}
+
+.memory-upload-form button:disabled {
+  opacity: .65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.upload-status {
+  color: #355c4d;
+  font-weight: 800;
+}
+
+.albums-section,
+.gallery-section {
+  display: grid;
+  gap: 18px;
+}
+
+.album-filter-row {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.album-filter {
+  border: none;
+  background: #f2f5f3;
+  color: #355c4d;
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-size: .9rem;
+  font-weight: 800;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: .25s;
+}
+
+.album-filter:hover {
+  transform: translateY(-2px);
+  background: #e3eee8;
+}
+
+.album-filter.active {
+  background: #355c4d;
+  color: white;
+  box-shadow: 0 8px 20px rgba(53,92,77,.25);
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.album-card {
+  border: none;
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 10px 28px rgba(0,0,0,.07);
+  transition: .25s;
+}
+
+.album-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 18px 36px rgba(0,0,0,.12);
+}
+
+.album-cover {
+  height: 150px;
+  background: linear-gradient(135deg,#dfe9e2,#eef3ef);
+  display: grid;
+  place-items: center;
+  font-size: 42px;
+  background-size: cover;
+  background-position: center;
+}
+
+.album-body {
+  padding: 18px;
+}
+
+.album-body p {
+  margin: 0 0 6px;
+  color: #6b7280;
+  font-weight: 800;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.album-body h3 {
+  margin: 0 0 8px;
+  color: #173a2f;
+}
+
+.album-body span {
+  color: #6b7280;
+}
+
+.memory-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.memory-photo-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0,0,0,.07);
+}
+
+.memory-photo-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.memory-photo-info {
+  padding: 18px;
+}
+
+.memory-photo-info p {
+  margin: 0 0 6px;
+  color: #6b7280;
+  font-weight: 800;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+.memory-photo-info h3 {
+  margin: 0 0 8px;
+  color: #173a2f;
+}
+
+.memory-photo-info span {
+  color: #6b7280;
+  font-size: .9rem;
+}
+
+.empty-memories h3 {
+  margin: 0 0 8px;
+  color: #173a2f;
+}
+
+.empty-memories p {
+  margin: 0;
+  color: #6b7280;
+}
+
+@media (max-width: 1100px) {
+  .album-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .memory-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .memories-hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .memories-hero h1 {
+    font-size: 42px;
+  }
+
+  .memory-trip-code {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .album-grid,
+  .memory-gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+.memory-photo-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.memory-card-delete {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  border: none;
+  background: rgba(255,255,255,.9);
+  color: #991b1b;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  z-index: 2;
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+}
+
+.memory-card-delete:hover {
+  background: #fee2e2;
+}
+
+.memory-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.memory-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(6px);
+}
+
+.memory-modal-content {
+  position: relative;
+  z-index: 1;
+  width: min(900px, 95vw);
+  max-height: 90vh;
+  background: white;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,.35);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+}
+
+.memory-modal-content img {
+  width: 100%;
+  height: 100%;
+  max-height: 90vh;
+  object-fit: cover;
+  display: block;
+}
+
+.memory-modal-info {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.memory-modal-info p {
+  margin: 0 0 8px;
+  color: #6b7280;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-size: .8rem;
+}
+
+.memory-modal-info h2 {
+  margin: 0 0 10px;
+  color: #173a2f;
+}
+
+.memory-modal-info span {
+  color: #6b7280;
+}
+
+.memory-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  border: none;
+  background: rgba(255,255,255,.9);
+  color: #173a2f;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 24px;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+}
+
+.memory-modal-delete {
+  margin-top: 28px;
+  border: none;
+  background: #fee2e2;
+  color: #991b1b;
+  border-radius: 999px;
+  padding: 13px 20px;
+  font-weight: 900;
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.memory-modal-delete:hover {
+  background: #fecaca;
+}
+
+@media (max-width: 800px) {
+  .memory-modal-content {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+
+  .memory-modal-content img {
+    max-height: 55vh;
+  }
+}
