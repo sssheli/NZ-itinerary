@@ -80,9 +80,9 @@ function renderExplorePage(container) {
     <section class="explore-page">
       <div class="explore-header">
         <p class="explore-subtitle">Discover New Zealand</p>
-        <h1>Explore</h1>
+        <h1>Explore New Zealand</h1>
         <p class="explore-description">
-          Browse attractions, restaurants, supermarkets and hotels throughout your journey.
+          Discover attractions, cafés, restaurants, shopping and hidden gems throughout your 14-day adventure.
         </p>
       </div>
 
@@ -90,7 +90,7 @@ function renderExplorePage(container) {
         <input
           id="exploreSearchInput"
           type="text"
-          placeholder="Search destinations..."
+          placeholder="🔍 Search New Zealand..."
           value="${searchQuery}"
         />
       </div>

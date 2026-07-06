@@ -1,113 +1,125 @@
-.explore-page{
-
-    display:grid;
-
-    gap:28px;
-
+.explore-page {
+  display: grid;
+  gap: 28px;
 }
 
-.explore-header{
-
-    background:white;
-
-    border-radius:30px;
-
-    padding:36px;
-
+.explore-header {
+  background: white;
+  border-radius: 30px;
+  padding: 36px;
 }
 
-.explore-subtitle{
-
-    margin:0;
-
-    color:#6b7280;
-
-    text-transform:uppercase;
-
-    letter-spacing:.14em;
-
+.explore-subtitle {
+  margin: 0;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: .14em;
 }
 
-.explore-header h1{
-
-    margin:12px 0;
-
-    color:#173a2f;
-
-    font-size:52px;
-
+.explore-header h1 {
+  margin: 12px 0;
+  color: #173a2f;
+  font-size: 52px;
 }
 
-.explore-description{
-
-    max-width:650px;
-
-    color:#6b7280;
-
-    line-height:1.7;
-
+.explore-description {
+  max-width: 650px;
+  color: #6b7280;
+  line-height: 1.7;
 }
 
-.explore-search input{
-
-    width:100%;
-
-    border:none;
-
-    border-radius:20px;
-
-    padding:18px 24px;
-
-    background:white;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.06);
-
-    font-size:16px;
-
+.explore-search input {
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+  padding: 18px 24px;
+  background: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
-.explore-grid{
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
 
-    display:grid;
+.category-pill {
+  border: none;
+  background: #f2f5f3;
+  color: #355c4d;
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
 
-    grid-template-columns:repeat(2,1fr);
+.category-pill:hover {
+  transform: translateY(-2px);
+  background: #e3eee8;
+}
 
-    gap:22px;
+.category-pill.active {
+  background: #355c4d;
+  color: white;
+  box-shadow: 0 8px 20px rgba(53,92,77,.25);
+}
 
+.explore-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
 }
 
 .explore-card {
   background: white;
-  border-radius: 26px;
+  border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 10px 28px rgba(0,0,0,.06);
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  transition: .3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.explore-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.12);
 }
 
 .explore-card-image {
-  height: 150px;
-  background: linear-gradient(135deg, #e8f0e8, #dbeafe);
-  display: grid;
-  place-items: center;
-  font-size: 46px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  background: linear-gradient(135deg,#d8ebe2,#b8d6c8);
 }
 
 .explore-card-body {
   padding: 22px;
-  display: grid;
-  gap: 10px;
 }
 
 .explore-type {
+  display: inline-block;
+  background: #eef6f1;
+  color: #355c4d;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: .12em;
-  color: #7b8794;
-  font-size: 12px;
-  margin: 0;
+  letter-spacing: .04em;
+  margin: 0 0 10px;
 }
 
 .explore-card h3 {
-  margin: 0;
+  margin: 0 0 8px;
   color: #173a2f;
+  font-size: 1.35rem;
 }
 
 .explore-card small {
@@ -115,10 +127,15 @@
 }
 
 .explore-card a {
-  margin-top: 8px;
+  display: inline-block;
+  margin-top: 18px;
   color: #0f6b4f;
   font-weight: 700;
   text-decoration: none;
+}
+
+.explore-card a:hover {
+  text-decoration: underline;
 }
 
 .explore-empty {
@@ -143,24 +160,12 @@
   text-decoration: none;
 }
 
-.category-tabs {
-  display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-}
+@media (max-width: 900px) {
+  .explore-grid {
+    grid-template-columns: 1fr;
+  }
 
-.category-tab {
-  background: white;
-  color: #173a2f;
-  border: 1px solid #e5e7eb;
-  border-radius: 999px;
-  padding: 12px 18px;
-  white-space: nowrap;
-  font-weight: 700;
-}
-
-.category-tab.active {
-  background: #173a2f;
-  color: white;
+  .explore-header h1 {
+    font-size: 42px;
+  }
 }
