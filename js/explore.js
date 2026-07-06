@@ -1,5 +1,5 @@
 let searchQuery = "";
-let activeCategory = "all";
+let selectedCategory = "all";
 
 function getAllPlaces() {
   const places = [];
@@ -9,7 +9,7 @@ function getAllPlaces() {
       places.push({
         ...place,
         day: day.day,
-        city: day.city
+        city: place.city || day.city
       });
     });
   });
@@ -28,7 +28,7 @@ function getFilteredPlaces() {
       place.city.toLowerCase().includes(query);
 
     const matchesCategory =
-      activeCategory === "all" || place.type === activeCategory;
+      selectedCategory === "all" || place.type === selectedCategory;
 
     return matchesSearch && matchesCategory;
   });
@@ -44,17 +44,17 @@ function renderExploreResults() {
         ? filteredPlaces.map(place => `
           <article class="explore-card">
             <div class="explore-card-image">
-                <span>${getPlaceEmoji(place.type)}</span>
+              <span>${getPlaceEmoji(place.type)}</span>
             </div>
 
             <div class="explore-card-body">
-                <p class="explore-type">${formatPlaceType(place.type)}</p>
-                <h3>${place.name}</h3>
-                <small>Day ${place.day} • ${place.city}</small>
+              <p class="explore-type">${formatPlaceType(place.type)}</p>
+              <h3>${place.name}</h3>
+              <small>Day ${place.day} • ${place.city}</small>
 
-                <a href="${place.map}" target="_blank">
+              <a href="${getMapLink(place)}" target="_blank">
                 Open Maps →
-                </a>
+              </a>
             </div>
           </article>
         `).join("")
@@ -95,17 +95,18 @@ function renderExplorePage(container) {
         />
       </div>
 
-      <div class="category-tabs">
+      <div class="category-filter">
         ${[
-          { id: "all", label: "All" },
-          { id: "hotel", label: "🏨 Hotels" },
-          { id: "attraction", label: "🏞 Attractions" },
-          { id: "food", label: "🍜 Food" },
-          { id: "shopping", label: "🛒 Shopping" },
-          { id: "cafe", label: "☕ Cafés" }
+          { id: "all", label: "🌍 All" },
+          { id: "attraction", label: "🏞️ Attractions" },
+          { id: "food", label: "🍴 Food" },
+          { id: "cafe", label: "☕ Cafe" },
+          { id: "hotel", label: "🏨 Hotel" },
+          { id: "shopping", label: "🛍️ Shopping" },
+          { id: "airport", label: "✈️ Airport" }
         ].map(category => `
           <button
-            class="category-tab ${activeCategory === category.id ? "active" : ""}"
+            class="category-pill ${selectedCategory === category.id ? "active" : ""}"
             data-category="${category.id}"
           >
             ${category.label}
@@ -124,9 +125,9 @@ function renderExplorePage(container) {
     renderExploreResults();
   });
 
-  document.querySelectorAll(".category-tab").forEach(button => {
+  document.querySelectorAll(".category-pill").forEach(button => {
     button.addEventListener("click", () => {
-      activeCategory = button.dataset.category;
+      selectedCategory = button.dataset.category;
       renderExplorePage(container);
     });
   });
@@ -136,18 +137,30 @@ function renderExplorePage(container) {
 
 function formatPlaceType(type) {
   if (type === "hotel") return "🏨 Hotel";
-  if (type === "shopping") return "🛒 Shopping";
-  if (type === "food") return "🍜 Food";
-  if (type === "attraction") return "🏞 Attraction";
+  if (type === "shopping") return "🛍️ Shopping";
+  if (type === "food") return "🍴 Food";
+  if (type === "attraction") return "🏞️ Attraction";
   if (type === "cafe") return "☕ Cafe";
+  if (type === "airport") return "✈️ Airport";
   return "📍 Place";
 }
 
 function getPlaceEmoji(type) {
   if (type === "hotel") return "🏨";
-  if (type === "shopping") return "🛒";
-  if (type === "food") return "🍜";
+  if (type === "shopping") return "🛍️";
+  if (type === "food") return "🍴";
   if (type === "attraction") return "🏞️";
   if (type === "cafe") return "☕";
+  if (type === "airport") return "✈️";
   return "📍";
+}
+
+function getMapLink(place) {
+  if (place.map && place.map.trim() !== "") {
+    return place.map;
+  }
+
+  return `https://www.google.com/maps/search/${encodeURIComponent(
+    `${place.name} ${place.city} New Zealand`
+  )}`;
 }
