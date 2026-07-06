@@ -2,8 +2,63 @@ function getUpcomingTripDay() {
   return tripData.days[0];
 }
 
+function calculateDaysLeft() {
+  // Month is 0-based in JavaScript, so 8 = September
+  const tripStartDate = new Date(2026, 8, 10);
+
+  const today = new Date();
+
+  const startOfToday = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate()
+  );
+
+  const difference = tripStartDate - startOfToday;
+
+  return Math.ceil(difference / (1000 * 60 * 60 * 24));
+}
+
+function getCountdownDisplay() {
+  const daysLeft = calculateDaysLeft();
+
+  if (daysLeft > 0) {
+    return {
+      value: daysLeft,
+      unit: language === "zh" ? "天" : daysLeft === 1 ? "day" : "days"
+    };
+  }
+
+  if (daysLeft === 0) {
+    return {
+      value: language === "zh" ? "今天!" : "Today!",
+      unit: ""
+    };
+  }
+
+  return {
+    value: language === "zh" ? "已开始" : "Started",
+    unit: ""
+  };
+}
+
+function updateCountdown() {
+  const countdownElement = document.getElementById("countdownDays");
+  const countdownUnitElement = document.getElementById("countdownUnit");
+
+  if (!countdownElement || !countdownUnitElement) {
+    return;
+  }
+
+  const countdown = getCountdownDisplay();
+
+  countdownElement.textContent = countdown.value;
+  countdownUnitElement.textContent = countdown.unit;
+}
+
 function getHomeText() {
   const currentDay = getUpcomingTripDay();
+  const countdown = getCountdownDisplay();
 
   return {
     en: {
@@ -13,8 +68,8 @@ function getHomeText() {
       start: "Start Journey",
 
       countdownLabel: "Trip Starts In",
-      countdownValue: "67",
-      countdownUnit: "days",
+      countdownValue: countdown.value,
+      countdownUnit: countdown.unit,
       countdownDate: "10 Sep 2026",
 
       weatherLabel: "Today's Weather",
@@ -46,8 +101,8 @@ function getHomeText() {
       start: "开始旅程",
 
       countdownLabel: "距离出发还有",
-      countdownValue: "67",
-      countdownUnit: "天",
+      countdownValue: countdown.value,
+      countdownUnit: countdown.unit,
       countdownDate: "2026年9月10日",
 
       weatherLabel: "今日天气",
@@ -96,15 +151,21 @@ function renderHomePage(container) {
       <section class="home-stats">
         <article class="stat-card">
           <div class="stat-icon green">📅</div>
+
           <div>
             <p>${h.countdownLabel}</p>
-            <h3>${h.countdownValue} <span>${h.countdownUnit}</span></h3>
+
+            <h3 id="countdownText">
+            ${h.countdownValue} <span>${h.countdownUnit}</span>
+            </h3>
+
             <small>${h.countdownDate}</small>
           </div>
         </article>
 
         <article class="stat-card">
           <div class="stat-icon yellow">☀️</div>
+
           <div>
             <p>${h.weatherLabel}</p>
             <h3>${h.weatherValue}</h3>
@@ -114,6 +175,7 @@ function renderHomePage(container) {
 
         <article class="stat-card">
           <div class="stat-icon purple">📍</div>
+
           <div>
             <p>${h.locationLabel}</p>
             <h3>${h.locationValue}</h3>
@@ -123,6 +185,7 @@ function renderHomePage(container) {
 
         <article class="stat-card">
           <div class="stat-icon red">📷</div>
+
           <div>
             <p>${h.memoriesLabel}</p>
             <h3>${h.memoriesValue}</h3>
@@ -135,11 +198,17 @@ function renderHomePage(container) {
         <article class="today-card">
           <div class="section-header">
             <h2>${h.todayTitle}</h2>
-            <button id="viewFullItineraryBtn">${h.viewFull} →</button>
+
+            <button id="viewFullItineraryBtn">
+              ${h.viewFull} →
+            </button>
           </div>
 
           <div class="today-main">
-            <div class="today-image"></div>
+            <div
+              class="today-image"
+              style="background-image: url('${currentDay.banner}')"
+            ></div>
 
             <div>
               <p>${h.dayLabel}</p>
@@ -166,12 +235,42 @@ function renderHomePage(container) {
 
           <div class="quick-grid">
             ${[
-              { page: "itinerary", icon: "🗓️", title: text[language].nav.itinerary, desc: "View full plan" },
-              { page: "explore", icon: "🧭", title: text[language].nav.explore, desc: "Places & activities" },
-              { page: "memories", icon: "🖼️", title: text[language].nav.memories, desc: "Your photos" },
-              { page: "tripHub", icon: "🧳", title: text[language].nav.tripHub, desc: "Travel info" },
-              { page: "checklist", icon: "☑️", title: text[language].nav.checklist, desc: "Packing & tasks" },
-              { page: "memories", icon: "♡", title: "Favourites", desc: "Saved places" }
+              {
+                page: "itinerary",
+                icon: "🗓️",
+                title: text[language].nav.itinerary,
+                desc: language === "zh" ? "查看完整行程" : "View full plan"
+              },
+              {
+                page: "explore",
+                icon: "🧭",
+                title: text[language].nav.explore,
+                desc: language === "zh" ? "景点与活动" : "Places & activities"
+              },
+              {
+                page: "memories",
+                icon: "🖼️",
+                title: text[language].nav.memories,
+                desc: language === "zh" ? "你的照片" : "Your photos"
+              },
+              {
+                page: "tripHub",
+                icon: "🧳",
+                title: text[language].nav.tripHub,
+                desc: language === "zh" ? "旅行资料" : "Travel info"
+              },
+              {
+                page: "checklist",
+                icon: "☑️",
+                title: text[language].nav.checklist,
+                desc: language === "zh" ? "打包与任务" : "Packing & tasks"
+              },
+              {
+                page: "memories",
+                icon: "♡",
+                title: language === "zh" ? "收藏" : "Favourites",
+                desc: language === "zh" ? "收藏地点" : "Saved places"
+              }
             ].map(card => `
               <button class="quick-item" data-page="${card.page}">
                 <div class="quick-icon">${card.icon}</div>
@@ -185,17 +284,21 @@ function renderHomePage(container) {
     </section>
   `;
 
-  document.getElementById("openItineraryBtn").addEventListener("click", () => {
-    renderLayout("itinerary");
-  });
+  function updateCountdown() {
+  const countdownTextElement = document.getElementById("countdownText");
 
-  document.getElementById("viewFullItineraryBtn").addEventListener("click", () => {
-    renderLayout("itinerary");
-  });
+  if (!countdownTextElement) {
+    return;
+  }
 
-  document.querySelectorAll(".quick-item").forEach(button => {
-    button.addEventListener("click", () => {
-      renderLayout(button.dataset.page);
-    });
-  });
+  const countdown = getCountdownDisplay();
+
+  if (countdown.unit === "") {
+    countdownTextElement.textContent = countdown.value;
+  } else {
+    countdownTextElement.innerHTML = `
+      ${countdown.value} <span>${countdown.unit}</span>
+    `;
+    }
+    }
 }
