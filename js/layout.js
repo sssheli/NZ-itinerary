@@ -44,6 +44,11 @@ function renderPage(page) {
     return;
   }
 
+  if (page === "tripHub") {
+    renderTripHubPage(pageContent);
+    return;
+  }
+
   pageContent.innerHTML = `
     <section class="placeholder-page">
       <p class="eyebrow">${t.comingSoon}</p>
@@ -52,3 +57,4 @@ function renderPage(page) {
     </section>
   `;
 }
+

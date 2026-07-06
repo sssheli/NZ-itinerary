@@ -1,0 +1,252 @@
+.trip-hub-page {
+  display: grid;
+  gap: 28px;
+}
+
+.trip-hub-hero {
+  background: linear-gradient(135deg, #173a2f, #315f4f);
+  color: white;
+  border-radius: 30px;
+  padding: 42px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.12);
+}
+
+.trip-hub-subtitle {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  opacity: .8;
+  font-size: .85rem;
+}
+
+.trip-hub-hero h1 {
+  margin: 12px 0;
+  font-size: 52px;
+}
+
+.trip-hub-hero p {
+  max-width: 680px;
+  line-height: 1.7;
+  opacity: .9;
+}
+
+.hub-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 22px;
+}
+
+.bottom-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.hub-card,
+.hotel-card {
+  background: white;
+  border-radius: 26px;
+  padding: 26px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.07);
+}
+
+.hub-card-header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.hub-card-header p {
+  margin: 0 0 4px;
+  color: #6b7280;
+  font-weight: 700;
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.hub-card-header h2 {
+  margin: 0;
+  color: #173a2f;
+}
+
+.hub-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 1.5rem;
+}
+
+.hub-icon.blue {
+  background: #e0f2fe;
+}
+
+.hub-icon.green {
+  background: #dcfce7;
+}
+
+.hub-icon.red {
+  background: #fee2e2;
+}
+
+.hub-icon.purple {
+  background: #ede9fe;
+}
+
+.hub-icon.yellow {
+  background: #fef3c7;
+}
+
+.hub-icon.pink {
+  background: #ffe4e6;
+}
+
+.flight-list,
+.link-list {
+  display: grid;
+  gap: 14px;
+}
+
+.flight-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px;
+  background: #f8faf9;
+  border-radius: 18px;
+}
+
+.flight-item strong {
+  color: #173a2f;
+}
+
+.flight-item p {
+  margin: 4px 0 0;
+  color: #6b7280;
+}
+
+.flight-item span {
+  color: #355c4d;
+  font-weight: 700;
+  text-align: right;
+}
+
+.hub-detail {
+  padding: 16px 0;
+  border-bottom: 1px solid #edf1ee;
+  display: grid;
+  gap: 6px;
+}
+
+.hub-detail:last-child {
+  border-bottom: none;
+}
+
+.hub-detail span,
+.hub-detail small {
+  color: #6b7280;
+}
+
+.hub-detail strong {
+  color: #173a2f;
+}
+
+.emergency-number {
+  background: #fef2f2;
+  border-radius: 20px;
+  padding: 20px;
+  display: grid;
+  gap: 8px;
+}
+
+.emergency-number span {
+  color: #991b1b;
+  font-weight: 700;
+}
+
+.emergency-number strong {
+  color: #7f1d1d;
+  font-size: 42px;
+}
+
+.hub-note {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.hub-section {
+  display: grid;
+  gap: 18px;
+}
+
+.hotel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.hotel-card {
+  display: grid;
+  gap: 16px;
+}
+
+.hotel-card p {
+  margin: 0 0 6px;
+  color: #6b7280;
+  font-weight: 700;
+}
+
+.hotel-card h3 {
+  margin: 0;
+  color: #173a2f;
+}
+
+.hotel-card span,
+.hotel-card small {
+  color: #6b7280;
+}
+
+.hotel-info {
+  display: grid;
+  gap: 4px;
+}
+
+.hotel-card a,
+.link-list a {
+  color: #0f6b4f;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.hotel-card a:hover,
+.link-list a:hover {
+  text-decoration: underline;
+}
+
+.document-list {
+  margin: 0;
+  padding-left: 18px;
+  color: #4b5563;
+  line-height: 1.9;
+}
+
+@media (max-width: 1100px) {
+  .hub-grid,
+  .bottom-grid,
+  .hotel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .trip-hub-hero h1 {
+    font-size: 42px;
+  }
+
+  .flight-item {
+    flex-direction: column;
+  }
+
+  .flight-item span {
+    text-align: left;
+  }
+}
