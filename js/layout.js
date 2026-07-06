@@ -48,6 +48,11 @@ function renderPage(page) {
     renderTripHubPage(pageContent);
     return;
   }
+  
+  if (page === "checklist") {
+    renderChecklistPage(pageContent);
+    return;
+  }
 
   pageContent.innerHTML = `
     <section class="placeholder-page">
