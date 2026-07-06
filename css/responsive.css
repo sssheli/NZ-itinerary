@@ -1,0 +1,48 @@
+/* Large laptops */
+@media (max-width: 1400px) {
+  .app-shell {
+    grid-template-columns: 230px minmax(0, 1fr);
+  }
+
+  .page-content {
+    padding: 28px;
+  }
+
+  .home-hero {
+    min-height: 340px;
+  }
+
+  .home-hero h1 {
+    font-size: clamp(38px, 5vw, 58px);
+  }
+
+  .home-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-lower-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Phones */
+@media (max-width: 760px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+  }
+
+  .page-content {
+    padding: 18px;
+  }
+
+  .home-stats,
+  .home-lower-grid,
+  .quick-grid {
+    grid-template-columns: 1fr;
+  }
+}

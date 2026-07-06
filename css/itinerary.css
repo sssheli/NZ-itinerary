@@ -169,3 +169,93 @@
   width: min(100%, 1500px);
   margin: 0 auto;
 }
+
+.timeline-card{
+
+    background:white;
+
+    border-radius:28px;
+
+    padding:34px;
+
+    box-shadow:0 14px 35px rgba(0,0,0,.06);
+
+}
+
+.section-title{
+
+    margin-bottom:28px;
+
+}
+
+.section-title h2{
+
+    margin:0;
+
+    color:#173a2f;
+
+}
+
+.timeline-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:28px;
+
+}
+
+.timeline-item{
+
+    display:grid;
+
+    grid-template-columns:120px 60px 1fr;
+
+    align-items:start;
+
+}
+
+.timeline-time{
+
+    color:#6b7280;
+
+    font-weight:600;
+
+}
+
+.timeline-dot{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:50%;
+
+    background:#e8f0e8;
+
+    display:grid;
+
+    place-items:center;
+
+    font-size:22px;
+
+}
+
+.timeline-content h3{
+
+    margin:0;
+
+    color:#173a2f;
+
+}
+
+.timeline-content p{
+
+    margin:8px 0 0;
+
+    color:#6b7280;
+
+    line-height:1.6;
+
+}

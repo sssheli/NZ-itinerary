@@ -1,19 +1,27 @@
 .app-shell {
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 280px 1fr;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .sidebar {
-  height: 100vh;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+
+  width: 230px;
+  height: 100vh;
+
   padding: 28px 20px;
   background: #ffffff;
   border-right: 1px solid #e5e7eb;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  box-sizing: border-box;
+  z-index: 10;
 }
 
 .brand {
@@ -61,6 +69,7 @@
 }
 
 .sidebar-bottom {
+  margin-top: auto;
   display: grid;
   gap: 12px;
 }
@@ -71,29 +80,24 @@
 }
 
 .page-content {
-  padding: 40px;
+  margin-left: 230px;
+  padding: 28px;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
-.placeholder-page,
-.home-page {
+.placeholder-page {
   max-width: 900px;
 }
 
 @media (max-width: 760px) {
-  .app-shell {
-    grid-template-columns: 1fr;
-  }
-
   .sidebar {
     position: static;
+    width: 100%;
     height: auto;
     border-right: none;
     border-bottom: 1px solid #e5e7eb;
-    padding: 18px;
-  }
-
-  .brand {
-    margin-bottom: 18px;
   }
 
   .side-nav {
@@ -106,41 +110,8 @@
     padding: 12px 10px;
   }
 
-  .sidebar-bottom {
-    margin-top: 18px;
-  }
-
   .page-content {
+    margin-left: 0;
     padding: 18px;
-  }
-}
-
-.app-shell {
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 230px minmax(0, 1fr);
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.page-content {
-  padding: 28px;
-  min-width: 0;
-  width: 100%;
-  box-sizing: border-box;
-  overflow-x: hidden;
-}
-
-@media (max-width: 1200px) {
-  .app-shell {
-    grid-template-columns: 240px minmax(0, 1fr);
-  }
-
-  .page-content {
-    padding: 28px;
-  }
-
-  .sidebar {
-    padding: 24px 16px;
   }
 }
