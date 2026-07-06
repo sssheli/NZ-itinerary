@@ -1,0 +1,166 @@
+.explore-page{
+
+    display:grid;
+
+    gap:28px;
+
+}
+
+.explore-header{
+
+    background:white;
+
+    border-radius:30px;
+
+    padding:36px;
+
+}
+
+.explore-subtitle{
+
+    margin:0;
+
+    color:#6b7280;
+
+    text-transform:uppercase;
+
+    letter-spacing:.14em;
+
+}
+
+.explore-header h1{
+
+    margin:12px 0;
+
+    color:#173a2f;
+
+    font-size:52px;
+
+}
+
+.explore-description{
+
+    max-width:650px;
+
+    color:#6b7280;
+
+    line-height:1.7;
+
+}
+
+.explore-search input{
+
+    width:100%;
+
+    border:none;
+
+    border-radius:20px;
+
+    padding:18px 24px;
+
+    background:white;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+
+    font-size:16px;
+
+}
+
+.explore-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:22px;
+
+}
+
+.explore-card {
+  background: white;
+  border-radius: 26px;
+  overflow: hidden;
+  box-shadow: 0 10px 28px rgba(0,0,0,.06);
+}
+
+.explore-card-image {
+  height: 150px;
+  background: linear-gradient(135deg, #e8f0e8, #dbeafe);
+  display: grid;
+  place-items: center;
+  font-size: 46px;
+}
+
+.explore-card-body {
+  padding: 22px;
+  display: grid;
+  gap: 10px;
+}
+
+.explore-type {
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: #7b8794;
+  font-size: 12px;
+  margin: 0;
+}
+
+.explore-card h3 {
+  margin: 0;
+  color: #173a2f;
+}
+
+.explore-card small {
+  color: #6b7280;
+}
+
+.explore-card a {
+  margin-top: 8px;
+  color: #0f6b4f;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.explore-empty {
+  background: white;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.06);
+}
+
+.explore-empty h3 {
+  margin: 0 0 8px;
+  color: #173a2f;
+}
+
+.explore-empty p {
+  color: #6b7280;
+}
+
+.explore-empty a {
+  color: #0f6b4f;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.category-tab {
+  background: white;
+  color: #173a2f;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  padding: 12px 18px;
+  white-space: nowrap;
+  font-weight: 700;
+}
+
+.category-tab.active {
+  background: #173a2f;
+  color: white;
+}

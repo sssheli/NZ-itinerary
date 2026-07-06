@@ -39,6 +39,11 @@ function renderPage(page) {
     return;
   }
 
+  if (page === "explore") {
+    renderExplorePage(pageContent);
+    return;
+  }
+
   pageContent.innerHTML = `
     <section class="placeholder-page">
       <p class="eyebrow">${t.comingSoon}</p>
