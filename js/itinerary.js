@@ -27,6 +27,18 @@ function getDayIcon(city) {
 
 }
 
+function getItineraryMapLink(place, currentDay) {
+    if (place.map && place.map.trim() !== "") {
+        return place.map;
+    }
+
+    const city = place.city || currentDay.city || "New Zealand";
+
+    return `https://www.google.com/maps/search/${encodeURIComponent(
+        `${place.name} ${city} New Zealand`
+    )}`;
+}
+
 function renderItineraryPage(container) {
     const currentDay = tripData.days[selectedDay];
 
@@ -215,8 +227,12 @@ function renderItineraryPage(container) {
             <h3>${place.name}</h3>
             </div>
 
-            <a href="${place.map}" target="_blank">
-            Open Maps →
+            <a
+                href="${getItineraryMapLink(place, currentDay)}"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Open Maps →
             </a>
         </article>
         `).join("")}

@@ -43,17 +43,21 @@ function getCountdownDisplay() {
 }
 
 function updateCountdown() {
-  const countdownElement = document.getElementById("countdownDays");
-  const countdownUnitElement = document.getElementById("countdownUnit");
+  const countdownTextElement = document.getElementById("countdownText");
 
-  if (!countdownElement || !countdownUnitElement) {
+  if (!countdownTextElement) {
     return;
   }
 
   const countdown = getCountdownDisplay();
 
-  countdownElement.textContent = countdown.value;
-  countdownUnitElement.textContent = countdown.unit;
+  if (countdown.unit === "") {
+    countdownTextElement.textContent = countdown.value;
+  } else {
+    countdownTextElement.innerHTML = `
+      ${countdown.value} <span>${countdown.unit}</span>
+    `;
+  }
 }
 
 function getHomeText() {
@@ -142,7 +146,7 @@ function renderHomePage(container) {
           <h1>${h.title}</h1>
           <p>${h.desc}</p>
 
-          <button class="hero-btn" id="openItineraryBtn">
+          <button type="button" class="hero-btn" id="openItineraryBtn">
             ${h.start} →
           </button>
         </div>
@@ -156,7 +160,7 @@ function renderHomePage(container) {
             <p>${h.countdownLabel}</p>
 
             <h3 id="countdownText">
-            ${h.countdownValue} <span>${h.countdownUnit}</span>
+              ${h.countdownValue} <span>${h.countdownUnit}</span>
             </h3>
 
             <small>${h.countdownDate}</small>
@@ -199,7 +203,7 @@ function renderHomePage(container) {
           <div class="section-header">
             <h2>${h.todayTitle}</h2>
 
-            <button id="viewFullItineraryBtn">
+            <button type="button" id="viewFullItineraryBtn">
               ${h.viewFull} →
             </button>
           </div>
@@ -272,7 +276,7 @@ function renderHomePage(container) {
                 desc: language === "zh" ? "收藏地点" : "Saved places"
               }
             ].map(card => `
-              <button class="quick-item" data-page="${card.page}">
+              <button type="button" class="quick-item" data-page="${card.page}">
                 <div class="quick-icon">${card.icon}</div>
                 <h3>${card.title}</h3>
                 <p>${card.desc}</p>
@@ -284,21 +288,27 @@ function renderHomePage(container) {
     </section>
   `;
 
-  function updateCountdown() {
-  const countdownTextElement = document.getElementById("countdownText");
+  updateCountdown();
 
-  if (!countdownTextElement) {
-    return;
-  }
+  document.getElementById("openItineraryBtn").addEventListener("click", () => {
+    renderLayout("itinerary");
+  });
 
-  const countdown = getCountdownDisplay();
+  document.getElementById("viewFullItineraryBtn").addEventListener("click", () => {
+    renderLayout("itinerary");
+  });
 
-  if (countdown.unit === "") {
-    countdownTextElement.textContent = countdown.value;
-  } else {
-    countdownTextElement.innerHTML = `
-      ${countdown.value} <span>${countdown.unit}</span>
-    `;
-    }
-    }
+  document.querySelectorAll(".quick-item").forEach(button => {
+    button.addEventListener("click", event => {
+      event.preventDefault();
+
+      const page = button.dataset.page;
+
+      if (!page) {
+        return;
+      }
+
+      renderLayout(page);
+    });
+  });
 }
