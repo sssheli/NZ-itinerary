@@ -93,6 +93,95 @@ function renderItineraryPage(container) {
 
     </section>
 
+        <section class="info-grid">
+        <article class="info-card accommodation-card">
+    <div class="card-header">
+        <span class="card-icon">🏨</span>
+
+        <div>
+        <p class="card-label">Accommodation</p>
+        <h2>${currentDay.accommodation.name}</h2>
+        </div>
+    </div>
+
+    <p class="room-type">
+        ${currentDay.accommodation.room || ""}
+    </p>
+
+    <div class="info-row">
+        <span>🕒 Check-in</span>
+        <strong>${currentDay.accommodation.checkIn || "-"}</strong>
+    </div>
+
+    <div class="info-row">
+        <span>🚪 Check-out</span>
+        <strong>${currentDay.accommodation.checkOut || "-"}</strong>
+    </div>
+
+    <a class="map-link" href="${currentDay.accommodation.map}" target="_blank">
+        📍 Open in Google Maps
+    </a>
+    </article>
+
+    <article class="info-card drive-card">
+    <div class="card-header">
+        <span class="card-icon drive-icon">🚗</span>
+
+        <div>
+        <p class="card-label">Today&apos;s Drive</p>
+        <h2>${currentDay.drive.duration}</h2>
+        </div>
+    </div>
+
+    <div class="route-line">
+        <div>
+        <span class="route-dot"></span>
+        <p>${currentDay.drive.from}</p>
+        </div>
+
+        <div>
+        <span class="route-dot end"></span>
+        <p>${currentDay.drive.to}</p>
+        </div>
+    </div>
+    </article>
+
+    <article class="info-card notes-card">
+        <h2>📝 Notes</h2>
+
+        <ul>
+        ${currentDay.notes.map(note => `<li>${note}</li>`).join("")}
+        </ul>
+    </article>
+    </section>
+    <section class="places-card">
+    <div class="section-title">
+        <h2>Places Today</h2>
+    </div>
+
+    <div class="places-grid">
+        ${currentDay.places.map(place => `
+        <article class="place-item">
+            <div>
+            <p class="place-type">
+            ${
+                place.type === "hotel" ? "🏨 Hotel" :
+                place.type === "shopping" ? "🛒 Shopping" :
+                place.type === "food" ? "🍜 Food" :
+                "📍 Place"
+            }
+            </p>
+            <h3>${place.name}</h3>
+            </div>
+
+            <a href="${place.map}" target="_blank">
+            Open Maps →
+            </a>
+        </article>
+        `).join("")}
+    </div>
+    </section>
+
   </section>
 `;
 
