@@ -73,7 +73,7 @@ function escapeHTML(value = "") {
 
 
 function getMemoriesText() {
-  return {
+  const text = {
     en: {
       subtitle: "Family Travel Scrapbook",
       title: "Memories",
@@ -110,7 +110,8 @@ function getMemoriesText() {
 
       uploadComplete: "Upload complete ✅",
       noValidFiles: "No valid photo or video files were selected.",
-      videoTooLarge: "One or more videos were too large to upload."
+      videoTooLarge: "One or more videos were too large to upload.",
+      deleteOwnOnly: "You can only delete memories uploaded from this browser or device."
     },
 
     zh: {
@@ -149,9 +150,12 @@ function getMemoriesText() {
 
       uploadComplete: "上传完成 ✅",
       noValidFiles: "没有选择有效的照片或视频。",
-      videoTooLarge: "一个或多个视频太大，无法上传。"
+      videoTooLarge: "一个或多个视频太大，无法上传。",
+      deleteOwnOnly: "你只能删除从这个浏览器或设备上传的回忆。"
     }
-  }[language];
+  };
+
+  return text[language] || text.en;
 }
 
 
@@ -159,6 +163,26 @@ function getFirebaseReady() {
   return Boolean(
     window.nzFirebase &&
     window.nzFirebase.getUser()
+  );
+}
+
+
+function canCurrentUserDelete(memory) {
+  const currentUser =
+    window.nzFirebase &&
+    window.nzFirebase.getUser();
+
+  if (!currentUser || !memory) {
+    return false;
+  }
+
+  const expectedStoragePrefix =
+    `trips/${TRIP_CODE}/users/${currentUser.uid}/`;
+
+  return Boolean(
+    memory.createdBy === currentUser.uid &&
+    typeof memory.storagePath === "string" &&
+    memory.storagePath.startsWith(expectedStoragePrefix)
   );
 }
 
@@ -425,7 +449,7 @@ async function uploadMemoryFiles(
       "Firebase is still connecting. Please wait a few seconds and try again."
     );
 
-    return;
+    return false;
   }
 
   if (!files || files.length === 0) {
@@ -433,7 +457,7 @@ async function uploadMemoryFiles(
       "Please choose at least one photo or video."
     );
 
-    return;
+    return false;
   }
 
   const user = window.nzFirebase.getUser();
@@ -483,25 +507,22 @@ async function uploadMemoryFiles(
     let fileType;
 
     if (isImage) {
-      uploadData =
-        await compressImage(file);
+      uploadData = await compressImage(file);
 
       contentType = "image/jpeg";
       fileExtension = "jpg";
       fileType = "image";
     } else {
       uploadData = file;
+      contentType = file.type || "video/mp4";
 
-      contentType =
-        file.type || "video/mp4";
-
-      fileExtension =
-        file.name.includes(".")
-          ? file.name
-              .split(".")
-              .pop()
-              .toLowerCase()
-          : "mp4";
+      fileExtension = file.name.includes(".")
+        ? file.name
+            .split(".")
+            .pop()
+            .toLowerCase()
+            .replace(/[^a-z0-9]/g, "") || "mp4"
+        : "mp4";
 
       fileType = "video";
     }
@@ -509,20 +530,17 @@ async function uploadMemoryFiles(
     const fileName =
       `${uploadedAt}-${i + 1}-${safeBaseName}.${fileExtension}`;
 
-    const dayFolder =
-      getDayFolder(day);
+    const dayFolder = getDayFolder(day);
 
     const storagePath =
-      `trips/${TRIP_CODE}/day${dayFolder}/${fileName}`;
+      `trips/${TRIP_CODE}/users/${user.uid}/day${dayFolder}/${fileName}`;
 
     const storageReference =
       window.nzFirebase.storage.ref(storagePath);
 
     await storageReference.put(
       uploadData,
-      {
-        contentType
-      }
+      { contentType }
     );
 
     const downloadUrl =
@@ -534,37 +552,18 @@ async function uploadMemoryFiles(
       .collection("memories")
       .add({
         tripCode: TRIP_CODE,
-
         day: Number(day),
-
-        uploaderName:
-          uploaderName || "Family",
-
-        caption:
-          caption || "",
-
-        url:
-          downloadUrl,
-
+        uploaderName: uploaderName || "Family",
+        caption: caption || "",
+        url: downloadUrl,
         storagePath,
-
-        originalFileName:
-          file.name,
-
+        originalFileName: file.name,
         fileType,
-
         contentType,
-
-        createdBy:
-          user.uid,
-
-        createdAtClient:
-          new Date().toISOString(),
-
+        createdBy: user.uid,
+        createdAtClient: new Date().toISOString(),
         createdAt:
-          firebase.firestore
-            .FieldValue
-            .serverTimestamp()
+          firebase.firestore.FieldValue.serverTimestamp()
       });
   }
 
@@ -574,7 +573,7 @@ async function uploadMemoryFiles(
         ? t.videoTooLarge
         : t.noValidFiles;
 
-    return;
+    return false;
   }
 
   statusElement.textContent =
@@ -586,6 +585,8 @@ async function uploadMemoryFiles(
 
   await loadMemories();
   await renderMemoriesPage(container);
+
+  return true;
 }
 
 
@@ -603,21 +604,18 @@ function openMemoryModal(
     return;
   }
 
-  const safeUrl =
-    escapeHTML(memory.url);
+  const safeUrl = escapeHTML(memory.url);
 
-  const safeCaption =
-    escapeHTML(
-      memory.caption || t.untitled
-    );
+  const safeCaption = escapeHTML(
+    memory.caption || t.untitled
+  );
 
-  const safeUploader =
-    escapeHTML(
-      memory.uploaderName || "Family"
-    );
+  const safeUploader = escapeHTML(
+    memory.uploaderName || "Family"
+  );
 
-  const uploadDate =
-    formatMemoryDate(memory);
+  const uploadDate = formatMemoryDate(memory);
+  const canDelete = canCurrentUserDelete(memory);
 
   const mediaMarkup =
     memory.fileType === "video"
@@ -638,8 +636,7 @@ function openMemoryModal(
           />
         `;
 
-  const modal =
-    document.createElement("div");
+  const modal = document.createElement("div");
 
   modal.className = "memory-modal";
 
@@ -680,23 +677,23 @@ function openMemoryModal(
             : ""
         }
 
-        <button
-          type="button"
-          class="memory-modal-delete"
-        >
-          ${t.deleteMemory}
-        </button>
+        ${
+          canDelete
+            ? `
+                <button
+                  type="button"
+                  class="memory-modal-delete"
+                >
+                  ${t.deleteMemory}
+                </button>
+              `
+            : ""
+        }
       </div>
     </div>
   `;
 
   document.body.appendChild(modal);
-
-  const handleEscape = event => {
-    if (event.key === "Escape") {
-      closeModal();
-    }
-  };
 
   const closeModal = () => {
     document.removeEventListener(
@@ -705,6 +702,12 @@ function openMemoryModal(
     );
 
     modal.remove();
+  };
+
+  const handleEscape = event => {
+    if (event.key === "Escape") {
+      closeModal();
+    }
   };
 
   document.addEventListener(
@@ -726,24 +729,26 @@ function openMemoryModal(
       closeModal
     );
 
-  modal
-    .querySelector(".memory-modal-delete")
-    .addEventListener(
+  const modalDeleteButton =
+    modal.querySelector(".memory-modal-delete");
+
+  if (modalDeleteButton) {
+    modalDeleteButton.addEventListener(
       "click",
       async () => {
         saveMemoriesScrollPosition();
 
-        const deleted =
-          await deleteMemory(
-            memory,
-            container
-          );
+        const deleted = await deleteMemory(
+          memory,
+          container
+        );
 
         if (deleted) {
           closeModal();
         }
       }
     );
+  }
 }
 
 
@@ -751,6 +756,14 @@ async function deleteMemory(
   memory,
   container
 ) {
+  const t = getMemoriesText();
+
+  if (!canCurrentUserDelete(memory)) {
+    alert(t.deleteOwnOnly);
+
+    return false;
+  }
+
   const confirmDelete =
     confirm("Delete this memory?");
 
@@ -759,12 +772,6 @@ async function deleteMemory(
   }
 
   try {
-    if (!memory.storagePath) {
-      throw new Error(
-        "This memory does not contain a Firebase Storage path."
-      );
-    }
-
     try {
       await window.nzFirebase.storage
         .ref(memory.storagePath)
@@ -795,9 +802,18 @@ async function deleteMemory(
       error
     );
 
+    if (
+    error.code === "permission-denied" ||
+    error.code === "storage/unauthorized"
+    ) {
     alert(
-      "Delete failed. The memory was not completely deleted. Check the console."
+        "You can only delete memories that you uploaded from this browser or device."
     );
+    } else {
+    alert(
+        "We couldn't delete this memory. Please refresh the page and try again."
+    );
+    }
 
     return false;
   }
@@ -808,32 +824,36 @@ function renderMemoryCard(
   memory,
   t
 ) {
-  const safeCaption =
-    escapeHTML(
-      memory.caption || t.untitled
-    );
+  const safeCaption = escapeHTML(
+    memory.caption || t.untitled
+  );
 
-  const safeUploader =
-    escapeHTML(
-      memory.uploaderName || "Family"
-    );
+  const safeUploader = escapeHTML(
+    memory.uploaderName || "Family"
+  );
 
-  const uploadDate =
-    formatMemoryDate(memory);
+  const uploadDate = formatMemoryDate(memory);
+  const canDelete = canCurrentUserDelete(memory);
 
   return `
     <article
       class="memory-photo-card"
       data-id="${escapeHTML(memory.id)}"
     >
-      <button
-        type="button"
-        class="memory-card-delete"
-        data-id="${escapeHTML(memory.id)}"
-        title="Delete memory"
-      >
-        ×
-      </button>
+      ${
+        canDelete
+          ? `
+              <button
+                type="button"
+                class="memory-card-delete"
+                data-id="${escapeHTML(memory.id)}"
+                title="Delete memory"
+              >
+                ×
+              </button>
+            `
+          : ""
+      }
 
       ${getMemoryCardMedia(memory)}
 
@@ -868,7 +888,7 @@ function renderMemoryCard(
 function attachMemoryCardEvents(
   container
 ) {
-  document
+  container
     .querySelectorAll(".memory-photo-card")
     .forEach(card => {
       card.addEventListener(
@@ -890,7 +910,7 @@ function attachMemoryCardEvents(
       );
     });
 
-  document
+  container
     .querySelectorAll(".memory-card-delete")
     .forEach(button => {
       button.addEventListener(
@@ -898,13 +918,9 @@ function attachMemoryCardEvents(
         async event => {
           event.stopPropagation();
 
-          const memory =
-            memoriesCache.find(item => {
-              return (
-                item.id ===
-                button.dataset.id
-              );
-            });
+          const memory = memoriesCache.find(item => {
+            return item.id === button.dataset.id;
+          });
 
           if (!memory) {
             return;
@@ -1090,9 +1106,7 @@ async function renderMemoriesPage(
 
   if (!getFirebaseReady()) {
     setTimeout(() => {
-      if (
-        document.body.contains(container)
-      ) {
+      if (document.body.contains(container)) {
         renderMemoriesPage(container);
       }
     }, 800);
@@ -1107,6 +1121,8 @@ async function renderMemoriesPage(
       "Could not load memories:",
       error
     );
+
+    shouldRestoreMemoriesScroll = false;
 
     container.innerHTML = `
       <section class="memories-page">
@@ -1456,32 +1472,46 @@ async function renderMemoriesPage(
           t.uploading;
 
         try {
-          await uploadMemoryFiles(
-            files,
-            day,
-            uploaderName,
-            caption,
-            statusElement,
-            container
-          );
+          const uploaded =
+            await uploadMemoryFiles(
+              files,
+              day,
+              uploaderName,
+              caption,
+              statusElement,
+              container
+            );
+
+          if (
+            !uploaded &&
+            uploadButton.isConnected
+          ) {
+            uploadButton.disabled = false;
+            uploadButton.textContent =
+              t.uploadButton;
+          }
         } catch (error) {
           console.error(
             "Upload failed:",
             error
           );
 
-          statusElement.textContent =
-            "Upload failed. Check the console.";
+          if (statusElement.isConnected) {
+            statusElement.textContent =
+              "Upload failed. Please check your internet connection and try again.";
+          }
 
-          uploadButton.disabled = false;
-          uploadButton.textContent =
-            t.uploadButton;
+          if (uploadButton.isConnected) {
+            uploadButton.disabled = false;
+            uploadButton.textContent =
+              t.uploadButton;
+          }
         }
       }
     );
 
 
-  document
+  container
     .querySelectorAll(".album-filter")
     .forEach(button => {
       button.addEventListener(
@@ -1502,7 +1532,7 @@ async function renderMemoriesPage(
     });
 
 
-  document
+  container
     .querySelectorAll(".album-card")
     .forEach(button => {
       button.addEventListener(
