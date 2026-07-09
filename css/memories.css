@@ -462,3 +462,169 @@
     max-height: 55vh;
   }
 }
+
+.memory-album-hero {
+  min-height: 330px;
+  border-radius: 30px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+}
+
+.memory-album-overlay {
+  min-height: 330px;
+  padding: 34px;
+  box-sizing: border-box;
+  color: white;
+  background: linear-gradient(
+    90deg,
+    rgba(15, 42, 33, 0.88),
+    rgba(15, 42, 33, 0.28)
+  );
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.memory-album-overlay p {
+  margin: 0 0 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.88;
+}
+
+.memory-album-overlay h1 {
+  margin: 0 0 10px;
+  font-size: 52px;
+}
+
+.memory-album-overlay span {
+  font-weight: 700;
+  opacity: 0.9;
+}
+
+.back-to-albums-btn {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.16);
+  color: white;
+  padding: 11px 18px;
+  border-radius: 999px;
+  font-weight: 800;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  transition: 0.25s;
+}
+
+.back-to-albums-btn:hover {
+  background: white;
+  color: #173a2f;
+  transform: translateY(-2px);
+}
+
+.memory-album-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.album-empty-state {
+  text-align: center;
+  padding: 55px 28px;
+}
+
+.empty-memory-icon {
+  font-size: 48px;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 1000px) {
+  .memory-album-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .memory-album-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .memory-album-overlay h1 {
+    font-size: 40px;
+  }
+}
+
+.memory-video-preview {
+  position: relative;
+  background: #111;
+}
+
+.memory-video-preview video,
+.memory-photo-card > video {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+  background: #111;
+}
+
+.memory-video-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+
+  display: grid;
+  place-items: center;
+
+  padding-left: 4px;
+
+  background: rgba(255, 255, 255, 0.9);
+  color: #173a2f;
+
+  font-size: 22px;
+
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+
+  pointer-events: none;
+}
+
+.memory-upload-time {
+  display: block;
+
+  margin-top: 7px;
+
+  color: #8a948e;
+
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.memory-modal-media {
+  width: 100%;
+  height: 100%;
+  max-height: 90vh;
+
+  object-fit: contain;
+  display: block;
+
+  background: #111;
+}
+
+@media (max-width: 800px) {
+  .memory-video-preview video,
+  .memory-photo-card > video {
+    height: 220px;
+  }
+
+  .memory-modal-media {
+    max-height: 55vh;
+  }
+}
