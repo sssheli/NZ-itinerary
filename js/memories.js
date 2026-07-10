@@ -14,11 +14,16 @@ const MAX_VIDEO_SIZE = 250 * 1024 * 1024;
 
 
 function saveMemoriesScrollPosition() {
-  const pageContent = document.getElementById("pageContent");
+  const pageContent =
+    document.getElementById("pageContent");
 
   memoriesScrollPosition = {
     windowY: window.scrollY,
-    pageContentY: pageContent ? pageContent.scrollTop : 0
+
+    pageContentY:
+      pageContent
+        ? pageContent.scrollTop
+        : 0
   };
 
   shouldRestoreMemoriesScroll = true;
@@ -30,26 +35,42 @@ function restoreMemoriesScrollPosition() {
     return;
   }
 
-  const savedPosition = { ...memoriesScrollPosition };
+  const savedPosition = {
+    ...memoriesScrollPosition
+  };
+
   shouldRestoreMemoriesScroll = false;
 
   const applySavedScroll = () => {
-    const pageContent = document.getElementById("pageContent");
+    const pageContent =
+      document.getElementById(
+        "pageContent"
+      );
 
-    window.scrollTo(0, savedPosition.windowY);
+    window.scrollTo(
+      0,
+      savedPosition.windowY
+    );
 
     if (pageContent) {
-      pageContent.scrollTop = savedPosition.pageContentY;
+      pageContent.scrollTop =
+        savedPosition.pageContentY;
     }
   };
 
   applySavedScroll();
-  requestAnimationFrame(applySavedScroll);
+
+  requestAnimationFrame(
+    applySavedScroll
+  );
 }
 
 
 function scrollMemoriesToTop() {
-  const pageContent = document.getElementById("pageContent");
+  const pageContent =
+    document.getElementById(
+      "pageContent"
+    );
 
   window.scrollTo({
     top: 0,
@@ -73,89 +94,287 @@ function escapeHTML(value = "") {
 
 
 function getMemoriesText() {
-  const text = {
+  const memoriesText = {
     en: {
-      subtitle: "Family Travel Scrapbook",
-      title: "Memories",
-      desc: "Upload and view family trip photos and videos from your New Zealand adventure.",
+      subtitle:
+        "Family Travel Scrapbook",
 
-      uploadTitle: "Upload Memories",
-      uploadDesc: "Choose a trip day, add your name, and upload photos or videos.",
+      title:
+        "Memories",
 
-      dayLabel: "Trip Day",
-      nameLabel: "Your Name",
-      captionLabel: "Caption",
-      fileLabel: "Photos & Videos",
+      desc:
+        "Upload and view family trip photos and videos from your New Zealand adventure.",
 
-      namePlaceholder: "e.g. Sherie",
-      captionPlaceholder: "Optional caption...",
+      tripCode:
+        "Trip Code",
 
-      uploadButton: "Upload Photos & Videos",
-      uploading: "Uploading...",
+      uploadTitle:
+        "Upload Memories",
 
-      albumsTitle: "Albums by Day",
-      galleryTitle: "Memory Gallery",
-      allDays: "All Days",
+      uploadDesc:
+        "Choose a trip day, add your name, and upload photos or videos.",
 
-      noMemories: "No memories uploaded yet.",
-      noMemoriesDesc: "Upload your first photo or video to start the scrapbook.",
+      dayLabel:
+        "Trip Day",
 
-      memory: "memory",
-      memories: "memories",
+      nameLabel:
+        "Your Name",
 
-      uploadedBy: "Uploaded by",
-      untitled: "Untitled memory",
-      deleteMemory: "Delete Memory",
-      backToAlbums: "Back to Albums",
+      captionLabel:
+        "Caption",
 
-      uploadComplete: "Upload complete ✅",
-      noValidFiles: "No valid photo or video files were selected.",
-      videoTooLarge: "One or more videos were too large to upload.",
-      deleteOwnOnly: "You can only delete memories uploaded from this browser or device."
+      fileLabel:
+        "Photos & Videos",
+
+      namePlaceholder:
+        "e.g. Sherie",
+
+      captionPlaceholder:
+        "Optional caption...",
+
+      uploadButton:
+        "Upload Photos & Videos",
+
+      uploading:
+        "Uploading...",
+
+      uploadingProgress:
+        (current, total) =>
+          `Uploading ${current} / ${total}...`,
+
+      albumsTitle:
+        "Albums by Day",
+
+      galleryTitle:
+        "Memory Gallery",
+
+      allDays:
+        "All Days",
+
+      noMemories:
+        "No memories uploaded yet.",
+
+      noMemoriesDesc:
+        "Upload your first photo or video to start the scrapbook.",
+
+      memory:
+        "memory",
+
+      memories:
+        "memories",
+
+      uploadedBy:
+        "Uploaded by",
+
+      untitled:
+        "Untitled memory",
+
+      deleteMemory:
+        "Delete Memory",
+
+      deleteTitle:
+        "Delete memory",
+
+      backToAlbums:
+        "Back to Albums",
+
+      uploadComplete:
+        "Upload complete ✅",
+
+      noValidFiles:
+        "No valid photo or video files were selected.",
+
+      videoTooLarge:
+        "One or more videos were too large to upload.",
+
+      deleteOwnOnly:
+        "You can only delete memories uploaded from this browser or device.",
+
+      firebaseConnecting:
+        "The photo service is still connecting. Please wait a few seconds and try again.",
+
+      chooseFiles:
+        "Please choose at least one photo or video.",
+
+      family:
+        "Family",
+
+      nzTime:
+        "NZ time",
+
+      closeMemory:
+        "Close memory",
+
+      deleteConfirm:
+        "Delete this memory?",
+
+      deleteFailed:
+        "We couldn't delete this memory. Please refresh the page and try again.",
+
+      loading:
+        "Loading memories...",
+
+      loadErrorTitle:
+        "Could not load memories",
+
+      loadErrorDesc:
+        "Please refresh the page and try again.",
+
+      uploadFailed:
+        "Upload failed. Please check your internet connection and try again.",
+
+      dayShort:
+        day =>
+          `Day ${day}`,
+
+      dayWithCity:
+        (day, city) =>
+          `Day ${day} · ${city}`
     },
 
+
     zh: {
-      subtitle: "家庭旅行相册",
-      title: "回忆",
-      desc: "上传并查看新西兰家庭旅行的照片和视频。",
+      subtitle:
+        "家庭旅行相册",
 
-      uploadTitle: "上传回忆",
-      uploadDesc: "选择旅行日期，填写名字，然后上传照片或视频。",
+      title:
+        "回忆",
 
-      dayLabel: "旅行天数",
-      nameLabel: "你的名字",
-      captionLabel: "文字说明",
-      fileLabel: "照片和视频",
+      desc:
+        "上传并查看新西兰家庭旅行的照片和视频。",
 
-      namePlaceholder: "例如：Sherie",
-      captionPlaceholder: "可填写说明...",
+      tripCode:
+        "旅行代码",
 
-      uploadButton: "上传照片和视频",
-      uploading: "上传中...",
+      uploadTitle:
+        "上传回忆",
 
-      albumsTitle: "每日相册",
-      galleryTitle: "回忆图库",
-      allDays: "全部天数",
+      uploadDesc:
+        "选择旅行日期，填写名字，然后上传照片或视频。",
 
-      noMemories: "还没有上传回忆。",
-      noMemoriesDesc: "上传第一张照片或视频，开始记录旅行回忆。",
+      dayLabel:
+        "旅行日期",
 
-      memory: "个回忆",
-      memories: "个回忆",
+      nameLabel:
+        "你的名字",
 
-      uploadedBy: "上传者",
-      untitled: "未命名回忆",
-      deleteMemory: "删除回忆",
-      backToAlbums: "返回相册",
+      captionLabel:
+        "文字说明",
 
-      uploadComplete: "上传完成 ✅",
-      noValidFiles: "没有选择有效的照片或视频。",
-      videoTooLarge: "一个或多个视频太大，无法上传。",
-      deleteOwnOnly: "你只能删除从这个浏览器或设备上传的回忆。"
+      fileLabel:
+        "照片和视频",
+
+      namePlaceholder:
+        "例如：Sherie",
+
+      captionPlaceholder:
+        "可填写说明...",
+
+      uploadButton:
+        "上传照片和视频",
+
+      uploading:
+        "上传中...",
+
+      uploadingProgress:
+        (current, total) =>
+          `正在上传 ${current} / ${total}...`,
+
+      albumsTitle:
+        "每日相册",
+
+      galleryTitle:
+        "回忆图库",
+
+      allDays:
+        "全部天数",
+
+      noMemories:
+        "还没有上传回忆。",
+
+      noMemoriesDesc:
+        "上传第一张照片或视频，开始记录旅行回忆。",
+
+      memory:
+        "个回忆",
+
+      memories:
+        "个回忆",
+
+      uploadedBy:
+        "上传者",
+
+      untitled:
+        "未命名回忆",
+
+      deleteMemory:
+        "删除回忆",
+
+      deleteTitle:
+        "删除回忆",
+
+      backToAlbums:
+        "返回相册",
+
+      uploadComplete:
+        "上传完成 ✅",
+
+      noValidFiles:
+        "没有选择有效的照片或视频。",
+
+      videoTooLarge:
+        "一个或多个视频太大，无法上传。",
+
+      deleteOwnOnly:
+        "你只能删除从这个浏览器或设备上传的回忆。",
+
+      firebaseConnecting:
+        "照片服务仍在连接中，请等待几秒后再试。",
+
+      chooseFiles:
+        "请至少选择一张照片或一个视频。",
+
+      family:
+        "家人",
+
+      nzTime:
+        "新西兰时间",
+
+      closeMemory:
+        "关闭回忆",
+
+      deleteConfirm:
+        "确定要删除这个回忆吗？",
+
+      deleteFailed:
+        "无法删除这个回忆，请刷新页面后再试。",
+
+      loading:
+        "正在加载回忆...",
+
+      loadErrorTitle:
+        "无法加载回忆",
+
+      loadErrorDesc:
+        "请刷新页面后再试。",
+
+      uploadFailed:
+        "上传失败，请检查网络连接后再试。",
+
+      dayShort:
+        day =>
+          `第 ${day} 天`,
+
+      dayWithCity:
+        (day, city) =>
+          `第 ${day} 天 · ${city}`
     }
   };
 
-  return text[language] || text.en;
+  return (
+    memoriesText[language] ||
+    memoriesText.en
+  );
 }
 
 
@@ -167,12 +386,17 @@ function getFirebaseReady() {
 }
 
 
-function canCurrentUserDelete(memory) {
+function canCurrentUserDelete(
+  memory
+) {
   const currentUser =
     window.nzFirebase &&
     window.nzFirebase.getUser();
 
-  if (!currentUser || !memory) {
+  if (
+    !currentUser ||
+    !memory
+  ) {
     return false;
   }
 
@@ -180,75 +404,113 @@ function canCurrentUserDelete(memory) {
     `trips/${TRIP_CODE}/users/${currentUser.uid}/`;
 
   return Boolean(
-    memory.createdBy === currentUser.uid &&
-    typeof memory.storagePath === "string" &&
-    memory.storagePath.startsWith(expectedStoragePrefix)
+    memory.createdBy ===
+      currentUser.uid &&
+
+    typeof memory.storagePath ===
+      "string" &&
+
+    memory.storagePath.startsWith(
+      expectedStoragePrefix
+    )
   );
 }
 
 
-function getDayFolder(dayNumber) {
-  return String(dayNumber).padStart(2, "0");
+function getDayFolder(
+  dayNumber
+) {
+  return String(dayNumber)
+    .padStart(2, "0");
 }
 
 
-function getDayTitle(dayNumber) {
-  const day = tripData.days.find(item => {
-    return Number(item.day) === Number(dayNumber);
-  });
+function getDayTitle(
+  dayNumber
+) {
+  const t =
+    getMemoriesText();
+
+  const day =
+    tripData.days.find(item => {
+      return (
+        Number(item.day) ===
+        Number(dayNumber)
+      );
+    });
 
   if (!day) {
-    return language === "zh"
-      ? `第 ${dayNumber} 天`
-      : `Day ${dayNumber}`;
+    return t.dayShort(
+      dayNumber
+    );
   }
 
-  if (language === "zh") {
-    return `第 ${day.day} 天 · ${day.city}`;
-  }
-
-  return `Day ${day.day} · ${day.city}`;
+  return t.dayWithCity(
+    day.day,
+    getLocalizedCity(day.city)
+  );
 }
 
 
-function getMemoryDate(memory) {
-  const timestamp = memory.createdAt;
+function getMemoryDate(
+  memory
+) {
+  const timestamp =
+    memory.createdAt;
 
   if (
     timestamp &&
-    typeof timestamp.toDate === "function"
+    typeof timestamp.toDate ===
+      "function"
   ) {
     return timestamp.toDate();
   }
 
   if (
     timestamp &&
-    typeof timestamp.seconds === "number"
+    typeof timestamp.seconds ===
+      "number"
   ) {
-    return new Date(timestamp.seconds * 1000);
+    return new Date(
+      timestamp.seconds * 1000
+    );
   }
 
   if (memory.createdAtClient) {
-    return new Date(memory.createdAtClient);
+    return new Date(
+      memory.createdAtClient
+    );
   }
 
   return null;
 }
 
 
-function formatMemoryDate(memory) {
-  const date = getMemoryDate(memory);
+function formatMemoryDate(
+  memory
+) {
+  const date =
+    getMemoryDate(memory);
 
-  if (!date || Number.isNaN(date.getTime())) {
+  if (
+    !date ||
+    Number.isNaN(
+      date.getTime()
+    )
+  ) {
     return "";
   }
 
   return new Intl.DateTimeFormat(
-    language === "zh" ? "zh-SG" : "en-SG",
+    language === "zh"
+      ? "zh-SG"
+      : "en-SG",
+
     {
       dateStyle: "medium",
       timeStyle: "short",
-      timeZone: "Pacific/Auckland"
+      timeZone:
+        "Pacific/Auckland"
     }
   ).format(date);
 }
@@ -259,61 +521,100 @@ async function loadMemories() {
     return [];
   }
 
-  const snapshot = await window.nzFirebase.db
-    .collection("trips")
-    .doc(TRIP_CODE)
-    .collection("memories")
-    .orderBy("createdAt", "desc")
-    .get();
+  const snapshot =
+    await window.nzFirebase.db
+      .collection("trips")
+      .doc(TRIP_CODE)
+      .collection("memories")
+      .orderBy(
+        "createdAt",
+        "desc"
+      )
+      .get();
 
-  memoriesCache = snapshot.docs
-    .map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    }))
-    .filter(memory => memory.url);
+  memoriesCache =
+    snapshot.docs
+      .map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }))
+      .filter(memory => {
+        return memory.url;
+      });
 
   return memoriesCache;
 }
 
 
 function getFilteredMemories() {
-  if (selectedMemoryDay === "all") {
+  if (
+    selectedMemoryDay ===
+    "all"
+  ) {
     return memoriesCache;
   }
 
-  return memoriesCache.filter(memory => {
-    return Number(memory.day) === Number(selectedMemoryDay);
-  });
+  return memoriesCache.filter(
+    memory => {
+      return (
+        Number(memory.day) ===
+        Number(
+          selectedMemoryDay
+        )
+      );
+    }
+  );
 }
 
 
-function getAlbumCount(dayNumber) {
-  return memoriesCache.filter(memory => {
-    return Number(memory.day) === Number(dayNumber);
-  }).length;
+function getAlbumCount(
+  dayNumber
+) {
+  return memoriesCache.filter(
+    memory => {
+      return (
+        Number(memory.day) ===
+        Number(dayNumber)
+      );
+    }
+  ).length;
 }
 
 
-function getAlbumCover(dayNumber) {
-  const memory = memoriesCache.find(item => {
-    return (
-      Number(item.day) === Number(dayNumber) &&
-      item.fileType !== "video"
-    );
-  });
+function getAlbumCover(
+  dayNumber
+) {
+  const memory =
+    memoriesCache.find(item => {
+      return (
+        Number(item.day) ===
+          Number(dayNumber) &&
 
-  return memory ? memory.url : "";
+        item.fileType !==
+          "video"
+      );
+    });
+
+  return memory
+    ? memory.url
+    : "";
 }
 
 
-function albumHasVideo(dayNumber) {
-  return memoriesCache.some(memory => {
-    return (
-      Number(memory.day) === Number(dayNumber) &&
-      memory.fileType === "video"
-    );
-  });
+function albumHasVideo(
+  dayNumber
+) {
+  return memoriesCache.some(
+    memory => {
+      return (
+        Number(memory.day) ===
+          Number(dayNumber) &&
+
+        memory.fileType ===
+          "video"
+      );
+    }
+  );
 }
 
 
@@ -322,92 +623,143 @@ function compressImage(
   maxWidth = 1600,
   quality = 0.82
 ) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
+  return new Promise(
+    (resolve, reject) => {
+      const reader =
+        new FileReader();
 
-    reader.onload = event => {
-      const image = new Image();
+      reader.onload =
+        event => {
+          const image =
+            new Image();
 
-      image.onload = () => {
-        let width = image.width;
-        let height = image.height;
+          image.onload = () => {
+            let width =
+              image.width;
 
-        if (width > maxWidth) {
-          height = Math.round(
-            (height * maxWidth) / width
-          );
+            let height =
+              image.height;
 
-          width = maxWidth;
-        }
+            if (
+              width >
+              maxWidth
+            ) {
+              height =
+                Math.round(
+                  (
+                    height *
+                    maxWidth
+                  ) /
+                  width
+                );
 
-        const canvas = document.createElement("canvas");
+              width =
+                maxWidth;
+            }
 
-        canvas.width = width;
-        canvas.height = height;
+            const canvas =
+              document.createElement(
+                "canvas"
+              );
 
-        const context = canvas.getContext("2d");
+            canvas.width =
+              width;
 
-        if (!context) {
-          reject(
-            new Error("Could not create image canvas.")
-          );
+            canvas.height =
+              height;
 
-          return;
-        }
+            const context =
+              canvas.getContext(
+                "2d"
+              );
 
-        context.drawImage(
-          image,
-          0,
-          0,
-          width,
-          height
-        );
-
-        canvas.toBlob(
-          blob => {
-            if (!blob) {
+            if (!context) {
               reject(
-                new Error("Image compression failed.")
+                new Error(
+                  "Could not create image canvas."
+                )
               );
 
               return;
             }
 
-            resolve(blob);
-          },
-          "image/jpeg",
-          quality
-        );
-      };
+            context.drawImage(
+              image,
+              0,
+              0,
+              width,
+              height
+            );
 
-      image.onerror = () => {
+            canvas.toBlob(
+              blob => {
+                if (!blob) {
+                  reject(
+                    new Error(
+                      "Image compression failed."
+                    )
+                  );
+
+                  return;
+                }
+
+                resolve(blob);
+              },
+
+              "image/jpeg",
+              quality
+            );
+          };
+
+          image.onerror = () => {
+            reject(
+              new Error(
+                "Could not load image."
+              )
+            );
+          };
+
+          image.src =
+            event.target.result;
+        };
+
+      reader.onerror = () => {
         reject(
-          new Error("Could not load image.")
+          new Error(
+            "Could not read file."
+          )
         );
       };
 
-      image.src = event.target.result;
-    };
-
-    reader.onerror = () => {
-      reject(
-        new Error("Could not read file.")
+      reader.readAsDataURL(
+        file
       );
-    };
-
-    reader.readAsDataURL(file);
-  });
+    }
+  );
 }
 
 
-function getMemoryCardMedia(memory) {
-  const safeUrl = escapeHTML(memory.url);
+function getMemoryCardMedia(
+  memory
+) {
+  const t =
+    getMemoriesText();
 
-  const safeAlt = escapeHTML(
-    memory.caption || "Trip memory"
-  );
+  const safeUrl =
+    escapeHTML(
+      memory.url
+    );
 
-  if (memory.fileType === "video") {
+  const safeAlt =
+    escapeHTML(
+      memory.caption ||
+      t.untitled
+    );
+
+  if (
+    memory.fileType ===
+    "video"
+  ) {
     return `
       <div class="memory-video-preview">
         <video
@@ -442,63 +794,97 @@ async function uploadMemoryFiles(
   statusElement,
   container
 ) {
-  const t = getMemoriesText();
+  const t =
+    getMemoriesText();
 
   if (!getFirebaseReady()) {
     alert(
-      "Firebase is still connecting. Please wait a few seconds and try again."
+      t.firebaseConnecting
     );
 
     return false;
   }
 
-  if (!files || files.length === 0) {
+  if (
+    !files ||
+    files.length === 0
+  ) {
     alert(
-      "Please choose at least one photo or video."
+      t.chooseFiles
     );
 
     return false;
   }
 
-  const user = window.nzFirebase.getUser();
-  const uploadedAt = Date.now();
+  const user =
+    window.nzFirebase
+      .getUser();
+
+  const uploadedAt =
+    Date.now();
 
   let validFileCount = 0;
   let oversizedVideoCount = 0;
 
-  for (let i = 0; i < files.length; i++) {
-    const file = files[i];
+  for (
+    let i = 0;
+    i < files.length;
+    i++
+  ) {
+    const file =
+      files[i];
 
     const isImage =
-      file.type.startsWith("image/");
+      file.type.startsWith(
+        "image/"
+      );
 
     const isVideo =
-      file.type.startsWith("video/");
+      file.type.startsWith(
+        "video/"
+      );
 
-    if (!isImage && !isVideo) {
+    if (
+      !isImage &&
+      !isVideo
+    ) {
       continue;
     }
 
     if (
       isVideo &&
-      file.size > MAX_VIDEO_SIZE
+      file.size >
+        MAX_VIDEO_SIZE
     ) {
       oversizedVideoCount++;
+
       continue;
     }
 
     validFileCount++;
 
     statusElement.textContent =
-      `Uploading ${i + 1} / ${files.length}...`;
+      t.uploadingProgress(
+        i + 1,
+        files.length
+      );
 
     const originalNameWithoutExtension =
-      file.name.replace(/\.[^/.]+$/, "");
+      file.name.replace(
+        /\.[^/.]+$/,
+        ""
+      );
 
     const safeBaseName =
       originalNameWithoutExtension
-        .replace(/\s+/g, "-")
-        .replace(/[^a-zA-Z0-9_-]/g, "") ||
+        .replace(
+          /\s+/g,
+          "-"
+        )
+        .replace(
+          /[^a-zA-Z0-9_-]/g,
+          ""
+        ) ||
       "memory";
 
     let uploadData;
@@ -507,67 +893,121 @@ async function uploadMemoryFiles(
     let fileType;
 
     if (isImage) {
-      uploadData = await compressImage(file);
+      uploadData =
+        await compressImage(
+          file
+        );
 
-      contentType = "image/jpeg";
-      fileExtension = "jpg";
-      fileType = "image";
+      contentType =
+        "image/jpeg";
+
+      fileExtension =
+        "jpg";
+
+      fileType =
+        "image";
     } else {
-      uploadData = file;
-      contentType = file.type || "video/mp4";
+      uploadData =
+        file;
 
-      fileExtension = file.name.includes(".")
-        ? file.name
-            .split(".")
-            .pop()
-            .toLowerCase()
-            .replace(/[^a-z0-9]/g, "") || "mp4"
-        : "mp4";
+      contentType =
+        file.type ||
+        "video/mp4";
 
-      fileType = "video";
+      fileExtension =
+        file.name.includes(".")
+          ? (
+              file.name
+                .split(".")
+                .pop()
+                .toLowerCase()
+                .replace(
+                  /[^a-z0-9]/g,
+                  ""
+                ) ||
+              "mp4"
+            )
+          : "mp4";
+
+      fileType =
+        "video";
     }
 
     const fileName =
       `${uploadedAt}-${i + 1}-${safeBaseName}.${fileExtension}`;
 
-    const dayFolder = getDayFolder(day);
+    const dayFolder =
+      getDayFolder(day);
 
     const storagePath =
       `trips/${TRIP_CODE}/users/${user.uid}/day${dayFolder}/${fileName}`;
 
     const storageReference =
-      window.nzFirebase.storage.ref(storagePath);
+      window.nzFirebase
+        .storage
+        .ref(
+          storagePath
+        );
 
     await storageReference.put(
       uploadData,
-      { contentType }
+      {
+        contentType
+      }
     );
 
     const downloadUrl =
-      await storageReference.getDownloadURL();
+      await storageReference
+        .getDownloadURL();
 
     await window.nzFirebase.db
       .collection("trips")
       .doc(TRIP_CODE)
       .collection("memories")
       .add({
-        tripCode: TRIP_CODE,
-        day: Number(day),
-        uploaderName: uploaderName || "Family",
-        caption: caption || "",
-        url: downloadUrl,
+        tripCode:
+          TRIP_CODE,
+
+        day:
+          Number(day),
+
+        uploaderName:
+          uploaderName ||
+          t.family,
+
+        caption:
+          caption || "",
+
+        url:
+          downloadUrl,
+
         storagePath,
-        originalFileName: file.name,
+
+        originalFileName:
+          file.name,
+
         fileType,
+
         contentType,
-        createdBy: user.uid,
-        createdAtClient: new Date().toISOString(),
+
+        createdBy:
+          user.uid,
+
+        createdAtClient:
+          new Date()
+            .toISOString(),
+
         createdAt:
-          firebase.firestore.FieldValue.serverTimestamp()
+          firebase
+            .firestore
+            .FieldValue
+            .serverTimestamp()
       });
   }
 
-  if (validFileCount === 0) {
+  if (
+    validFileCount === 0
+  ) {
     statusElement.textContent =
       oversizedVideoCount > 0
         ? t.videoTooLarge
@@ -581,10 +1021,14 @@ async function uploadMemoryFiles(
       ? `${t.uploadComplete} ${t.videoTooLarge}`
       : t.uploadComplete;
 
-  selectedMemoryDay = String(day);
+  selectedMemoryDay =
+    String(day);
 
   await loadMemories();
-  await renderMemoriesPage(container);
+
+  await renderMemoriesPage(
+    container
+  );
 
   return true;
 }
@@ -594,31 +1038,51 @@ function openMemoryModal(
   memoryId,
   container
 ) {
-  const t = getMemoriesText();
+  const t =
+    getMemoriesText();
 
-  const memory = memoriesCache.find(item => {
-    return item.id === memoryId;
-  });
+  const memory =
+    memoriesCache.find(item => {
+      return (
+        item.id ===
+        memoryId
+      );
+    });
 
   if (!memory) {
     return;
   }
 
-  const safeUrl = escapeHTML(memory.url);
+  const safeUrl =
+    escapeHTML(
+      memory.url
+    );
 
-  const safeCaption = escapeHTML(
-    memory.caption || t.untitled
-  );
+  const safeCaption =
+    escapeHTML(
+      memory.caption ||
+      t.untitled
+    );
 
-  const safeUploader = escapeHTML(
-    memory.uploaderName || "Family"
-  );
+  const safeUploader =
+    escapeHTML(
+      memory.uploaderName ||
+      t.family
+    );
 
-  const uploadDate = formatMemoryDate(memory);
-  const canDelete = canCurrentUserDelete(memory);
+  const uploadDate =
+    formatMemoryDate(
+      memory
+    );
+
+  const canDelete =
+    canCurrentUserDelete(
+      memory
+    );
 
   const mediaMarkup =
-    memory.fileType === "video"
+    memory.fileType ===
+    "video"
       ? `
           <video
             class="memory-modal-media"
@@ -636,9 +1100,13 @@ function openMemoryModal(
           />
         `;
 
-  const modal = document.createElement("div");
+  const modal =
+    document.createElement(
+      "div"
+    );
 
-  modal.className = "memory-modal";
+  modal.className =
+    "memory-modal";
 
   modal.innerHTML = `
     <div class="memory-modal-backdrop"></div>
@@ -647,7 +1115,7 @@ function openMemoryModal(
       <button
         type="button"
         class="memory-modal-close"
-        aria-label="Close memory"
+        aria-label="${t.closeMemory}"
       >
         ×
       </button>
@@ -656,7 +1124,9 @@ function openMemoryModal(
 
       <div class="memory-modal-info">
         <p>
-          ${getDayTitle(memory.day)}
+          ${getDayTitle(
+            memory.day
+          )}
         </p>
 
         <h2>
@@ -664,14 +1134,19 @@ function openMemoryModal(
         </h2>
 
         <span>
-          ${t.uploadedBy} ${safeUploader}
+          ${t.uploadedBy}
+          ${safeUploader}
         </span>
 
         ${
           uploadDate
             ? `
                 <small class="memory-upload-time">
-                  ${escapeHTML(uploadDate)} · NZ time
+                  ${escapeHTML(
+                    uploadDate
+                  )}
+                  ·
+                  ${t.nzTime}
                 </small>
               `
             : ""
@@ -693,7 +1168,20 @@ function openMemoryModal(
     </div>
   `;
 
-  document.body.appendChild(modal);
+  document.body
+    .appendChild(
+      modal
+    );
+
+  const handleEscape =
+    event => {
+      if (
+        event.key ===
+        "Escape"
+      ) {
+        closeModal();
+      }
+    };
 
   const closeModal = () => {
     document.removeEventListener(
@@ -704,50 +1192,52 @@ function openMemoryModal(
     modal.remove();
   };
 
-  const handleEscape = event => {
-    if (event.key === "Escape") {
-      closeModal();
-    }
-  };
-
   document.addEventListener(
     "keydown",
     handleEscape
   );
 
   modal
-    .querySelector(".memory-modal-close")
+    .querySelector(
+      ".memory-modal-close"
+    )
     .addEventListener(
       "click",
       closeModal
     );
 
   modal
-    .querySelector(".memory-modal-backdrop")
+    .querySelector(
+      ".memory-modal-backdrop"
+    )
     .addEventListener(
       "click",
       closeModal
     );
 
   const modalDeleteButton =
-    modal.querySelector(".memory-modal-delete");
+    modal.querySelector(
+      ".memory-modal-delete"
+    );
 
   if (modalDeleteButton) {
-    modalDeleteButton.addEventListener(
-      "click",
-      async () => {
-        saveMemoriesScrollPosition();
+    modalDeleteButton
+      .addEventListener(
+        "click",
+        async () => {
+          saveMemoriesScrollPosition();
 
-        const deleted = await deleteMemory(
-          memory,
-          container
-        );
+          const deleted =
+            await deleteMemory(
+              memory,
+              container
+            );
 
-        if (deleted) {
-          closeModal();
+          if (deleted) {
+            closeModal();
+          }
         }
-      }
-    );
+      );
   }
 }
 
@@ -756,16 +1246,25 @@ async function deleteMemory(
   memory,
   container
 ) {
-  const t = getMemoriesText();
+  const t =
+    getMemoriesText();
 
-  if (!canCurrentUserDelete(memory)) {
-    alert(t.deleteOwnOnly);
+  if (
+    !canCurrentUserDelete(
+      memory
+    )
+  ) {
+    alert(
+      t.deleteOwnOnly
+    );
 
     return false;
   }
 
   const confirmDelete =
-    confirm("Delete this memory?");
+    confirm(
+      t.deleteConfirm
+    );
 
   if (!confirmDelete) {
     return false;
@@ -773,10 +1272,16 @@ async function deleteMemory(
 
   try {
     try {
-      await window.nzFirebase.storage
-        .ref(memory.storagePath)
+      await window
+        .nzFirebase
+        .storage
+        .ref(
+          memory.storagePath
+        )
         .delete();
-    } catch (storageError) {
+    } catch (
+      storageError
+    ) {
       if (
         storageError.code !==
         "storage/object-not-found"
@@ -785,7 +1290,9 @@ async function deleteMemory(
       }
     }
 
-    await window.nzFirebase.db
+    await window
+      .nzFirebase
+      .db
       .collection("trips")
       .doc(TRIP_CODE)
       .collection("memories")
@@ -793,7 +1300,10 @@ async function deleteMemory(
       .delete();
 
     await loadMemories();
-    await renderMemoriesPage(container);
+
+    await renderMemoriesPage(
+      container
+    );
 
     return true;
   } catch (error) {
@@ -803,16 +1313,19 @@ async function deleteMemory(
     );
 
     if (
-    error.code === "permission-denied" ||
-    error.code === "storage/unauthorized"
+      error.code ===
+        "permission-denied" ||
+
+      error.code ===
+        "storage/unauthorized"
     ) {
-    alert(
-        "You can only delete memories that you uploaded from this browser or device."
-    );
+      alert(
+        t.deleteOwnOnly
+      );
     } else {
-    alert(
-        "We couldn't delete this memory. Please refresh the page and try again."
-    );
+      alert(
+        t.deleteFailed
+      );
     }
 
     return false;
@@ -824,21 +1337,34 @@ function renderMemoryCard(
   memory,
   t
 ) {
-  const safeCaption = escapeHTML(
-    memory.caption || t.untitled
-  );
+  const safeCaption =
+    escapeHTML(
+      memory.caption ||
+      t.untitled
+    );
 
-  const safeUploader = escapeHTML(
-    memory.uploaderName || "Family"
-  );
+  const safeUploader =
+    escapeHTML(
+      memory.uploaderName ||
+      t.family
+    );
 
-  const uploadDate = formatMemoryDate(memory);
-  const canDelete = canCurrentUserDelete(memory);
+  const uploadDate =
+    formatMemoryDate(
+      memory
+    );
+
+  const canDelete =
+    canCurrentUserDelete(
+      memory
+    );
 
   return `
     <article
       class="memory-photo-card"
-      data-id="${escapeHTML(memory.id)}"
+      data-id="${escapeHTML(
+        memory.id
+      )}"
     >
       ${
         canDelete
@@ -846,8 +1372,10 @@ function renderMemoryCard(
               <button
                 type="button"
                 class="memory-card-delete"
-                data-id="${escapeHTML(memory.id)}"
-                title="Delete memory"
+                data-id="${escapeHTML(
+                  memory.id
+                )}"
+                title="${t.deleteTitle}"
               >
                 ×
               </button>
@@ -855,11 +1383,15 @@ function renderMemoryCard(
           : ""
       }
 
-      ${getMemoryCardMedia(memory)}
+      ${getMemoryCardMedia(
+        memory
+      )}
 
       <div class="memory-photo-info">
         <p>
-          ${getDayTitle(memory.day)}
+          ${getDayTitle(
+            memory.day
+          )}
         </p>
 
         <h3>
@@ -867,14 +1399,19 @@ function renderMemoryCard(
         </h3>
 
         <span>
-          ${t.uploadedBy} ${safeUploader}
+          ${t.uploadedBy}
+          ${safeUploader}
         </span>
 
         ${
           uploadDate
             ? `
                 <small class="memory-upload-time">
-                  ${escapeHTML(uploadDate)} · NZ time
+                  ${escapeHTML(
+                    uploadDate
+                  )}
+                  ·
+                  ${t.nzTime}
                 </small>
               `
             : ""
@@ -889,7 +1426,9 @@ function attachMemoryCardEvents(
   container
 ) {
   container
-    .querySelectorAll(".memory-photo-card")
+    .querySelectorAll(
+      ".memory-photo-card"
+    )
     .forEach(card => {
       card.addEventListener(
         "click",
@@ -911,16 +1450,24 @@ function attachMemoryCardEvents(
     });
 
   container
-    .querySelectorAll(".memory-card-delete")
+    .querySelectorAll(
+      ".memory-card-delete"
+    )
     .forEach(button => {
       button.addEventListener(
         "click",
         async event => {
           event.stopPropagation();
 
-          const memory = memoriesCache.find(item => {
-            return item.id === button.dataset.id;
-          });
+          const memory =
+            memoriesCache.find(
+              item => {
+                return (
+                  item.id ===
+                  button.dataset.id
+                );
+              }
+            );
 
           if (!memory) {
             return;
@@ -941,38 +1488,58 @@ function attachMemoryCardEvents(
 function renderMemoryAlbumView(
   container
 ) {
-  const t = getMemoriesText();
+  const t =
+    getMemoriesText();
 
-  const day = tripData.days.find(item => {
-    return (
-      Number(item.day) ===
-      Number(activeMemoryAlbum)
+  const day =
+    tripData.days.find(
+      item => {
+        return (
+          Number(item.day) ===
+          Number(
+            activeMemoryAlbum
+          )
+        );
+      }
     );
-  });
 
   if (!day) {
-    activeMemoryAlbum = null;
+    activeMemoryAlbum =
+      null;
 
-    renderMemoriesPage(container);
+    renderMemoriesPage(
+      container
+    );
 
     return;
   }
 
+  const localizedDay =
+    getLocalizedTripDay(
+      day
+    );
+
   const albumMemories =
-    memoriesCache.filter(memory => {
-      return (
-        Number(memory.day) ===
-        Number(day.day)
-      );
-    });
+    memoriesCache.filter(
+      memory => {
+        return (
+          Number(memory.day) ===
+          Number(day.day)
+        );
+      }
+    );
 
   container.innerHTML = `
     <section class="memories-page">
+
       <section
         class="memory-album-hero"
-        style="background-image: url('${escapeHTML(day.banner)}')"
+        style="background-image: url('${escapeHTML(
+          day.banner
+        )}')"
       >
         <div class="memory-album-overlay">
+
           <button
             type="button"
             class="back-to-albums-btn"
@@ -983,24 +1550,34 @@ function renderMemoryAlbumView(
 
           <div>
             <p>
-              ${getDayTitle(day.day)}
+              ${getDayTitle(
+                day.day
+              )}
               ·
-              ${escapeHTML(day.displayDate)}
+              ${escapeHTML(
+                localizedDay
+                  .displayDate
+              )}
             </p>
 
             <h1>
-              ${escapeHTML(day.city)}
+              ${escapeHTML(
+                localizedDay.city
+              )}
             </h1>
 
             <span>
               ${albumMemories.length}
+
               ${
-                albumMemories.length === 1
+                albumMemories.length ===
+                1
                   ? t.memory
                   : t.memories
               }
             </span>
           </div>
+
         </div>
       </section>
 
@@ -1008,6 +1585,7 @@ function renderMemoryAlbumView(
         albumMemories.length > 0
           ? `
               <section class="memory-album-gallery">
+
                 ${albumMemories
                   .map(memory => {
                     return renderMemoryCard(
@@ -1016,10 +1594,12 @@ function renderMemoryAlbumView(
                     );
                   })
                   .join("")}
+
               </section>
             `
           : `
               <article class="empty-memories album-empty-state">
+
                 <div class="empty-memory-icon">
                   📷
                 </div>
@@ -1031,27 +1611,38 @@ function renderMemoryAlbumView(
                 <p>
                   ${t.noMemoriesDesc}
                 </p>
+
               </article>
             `
       }
+
     </section>
   `;
 
   document
-    .getElementById("backToAlbumsBtn")
+    .getElementById(
+      "backToAlbumsBtn"
+    )
     .addEventListener(
       "click",
       async () => {
-        activeMemoryAlbum = null;
-        selectedMemoryDay = "all";
+        activeMemoryAlbum =
+          null;
 
-        await renderMemoriesPage(container);
+        selectedMemoryDay =
+          "all";
+
+        await renderMemoriesPage(
+          container
+        );
 
         scrollMemoriesToTop();
       }
     );
 
-  attachMemoryCardEvents(container);
+  attachMemoryCardEvents(
+    container
+  );
 
   restoreMemoriesScrollPosition();
 }
@@ -1060,16 +1651,20 @@ function renderMemoryAlbumView(
 async function renderMemoriesPage(
   container
 ) {
-  const t = getMemoriesText();
+  const t =
+    getMemoriesText();
 
   const shouldKeepCurrentPage =
     shouldRestoreMemoriesScroll &&
-    container.innerHTML.trim() !== "";
+    container.innerHTML.trim() !==
+      "";
 
   if (!shouldKeepCurrentPage) {
     container.innerHTML = `
       <section class="memories-page">
+
         <section class="memories-hero">
+
           <div>
             <p class="memories-subtitle">
               ${t.subtitle}
@@ -1086,30 +1681,41 @@ async function renderMemoriesPage(
 
           <div class="memory-trip-code">
             <span>
-              Trip Code
+              ${t.tripCode}
             </span>
 
             <strong>
               ${TRIP_CODE}
             </strong>
           </div>
+
         </section>
 
         <section class="memories-loading-card">
           <p>
-            Loading memories...
+            ${t.loading}
           </p>
         </section>
+
       </section>
     `;
   }
 
   if (!getFirebaseReady()) {
-    setTimeout(() => {
-      if (document.body.contains(container)) {
-        renderMemoriesPage(container);
-      }
-    }, 800);
+    setTimeout(
+      () => {
+        if (
+          document.body.contains(
+            container
+          )
+        ) {
+          renderMemoriesPage(
+            container
+          );
+        }
+      },
+      800
+    );
 
     return;
   }
@@ -1122,19 +1728,24 @@ async function renderMemoriesPage(
       error
     );
 
-    shouldRestoreMemoriesScroll = false;
+    shouldRestoreMemoriesScroll =
+      false;
 
     container.innerHTML = `
       <section class="memories-page">
+
         <article class="empty-memories">
+
           <h3>
-            Could not load memories
+            ${t.loadErrorTitle}
           </h3>
 
           <p>
-            Please refresh the page and try again.
+            ${t.loadErrorDesc}
           </p>
+
         </article>
+
       </section>
     `;
 
@@ -1145,24 +1756,37 @@ async function renderMemoriesPage(
     getFilteredMemories();
 
   const displayedAlbumDays =
-    selectedMemoryDay === "all"
+    selectedMemoryDay ===
+    "all"
       ? tripData.days
-      : tripData.days.filter(day => {
-          return (
-            Number(day.day) ===
-            Number(selectedMemoryDay)
-          );
-        });
 
-  if (activeMemoryAlbum !== null) {
-    renderMemoryAlbumView(container);
+      : tripData.days.filter(
+          day => {
+            return (
+              Number(day.day) ===
+              Number(
+                selectedMemoryDay
+              )
+            );
+          }
+        );
+
+  if (
+    activeMemoryAlbum !==
+    null
+  ) {
+    renderMemoryAlbumView(
+      container
+    );
 
     return;
   }
 
   container.innerHTML = `
     <section class="memories-page">
+
       <section class="memories-hero">
+
         <div>
           <p class="memories-subtitle">
             ${t.subtitle}
@@ -1179,17 +1803,19 @@ async function renderMemoriesPage(
 
         <div class="memory-trip-code">
           <span>
-            Trip Code
+            ${t.tripCode}
           </span>
 
           <strong>
             ${TRIP_CODE}
           </strong>
         </div>
+
       </section>
 
 
       <section class="memory-upload-card">
+
         <div>
           <h2>
             ${t.uploadTitle}
@@ -1204,24 +1830,37 @@ async function renderMemoriesPage(
           id="memoryUploadForm"
           class="memory-upload-form"
         >
+
           <div class="form-row">
+
             <label>
               ${t.dayLabel}
 
               <select id="memoryDaySelect">
+
                 ${tripData.days
                   .map(day => {
+                    const localizedDay =
+                      getLocalizedTripDay(
+                        day
+                      );
+
                     return `
                       <option value="${day.day}">
-                        Day ${day.day}
-                        ·
-                        ${escapeHTML(day.city)}
+                        ${t.dayWithCity(
+                          day.day,
+                          escapeHTML(
+                            localizedDay.city
+                          )
+                        )}
                       </option>
                     `;
                   })
                   .join("")}
+
               </select>
             </label>
+
 
             <label>
               ${t.nameLabel}
@@ -1229,10 +1868,14 @@ async function renderMemoriesPage(
               <input
                 type="text"
                 id="memoryUploaderName"
-                placeholder="${escapeHTML(t.namePlaceholder)}"
+                placeholder="${escapeHTML(
+                  t.namePlaceholder
+                )}"
               />
             </label>
+
           </div>
+
 
           <label>
             ${t.captionLabel}
@@ -1240,9 +1883,12 @@ async function renderMemoriesPage(
             <input
               type="text"
               id="memoryCaption"
-              placeholder="${escapeHTML(t.captionPlaceholder)}"
+              placeholder="${escapeHTML(
+                t.captionPlaceholder
+              )}"
             />
           </label>
+
 
           <label>
             ${t.fileLabel}
@@ -1255,6 +1901,7 @@ async function renderMemoriesPage(
             />
           </label>
 
+
           <button
             type="submit"
             id="memoryUploadBtn"
@@ -1262,26 +1909,33 @@ async function renderMemoriesPage(
             ${t.uploadButton}
           </button>
 
+
           <p
             class="upload-status"
             id="uploadStatus"
           ></p>
+
         </form>
+
       </section>
 
 
       <section class="albums-section">
+
         <div class="section-title">
           <h2>
             ${t.albumsTitle}
           </h2>
         </div>
 
+
         <div class="album-filter-row">
+
           <button
             type="button"
             class="album-filter ${
-              selectedMemoryDay === "all"
+              selectedMemoryDay ===
+              "all"
                 ? "active"
                 : ""
             }"
@@ -1290,38 +1944,52 @@ async function renderMemoriesPage(
             🌍 ${t.allDays}
           </button>
 
+
           ${tripData.days
             .map(day => {
               return `
                 <button
                   type="button"
                   class="album-filter ${
-                    Number(selectedMemoryDay) ===
+                    Number(
+                      selectedMemoryDay
+                    ) ===
                     Number(day.day)
                       ? "active"
                       : ""
                   }"
                   data-day="${day.day}"
                 >
-                  Day ${day.day}
+                  ${t.dayShort(
+                    day.day
+                  )}
                 </button>
               `;
             })
             .join("")}
+
         </div>
 
+
         <div class="album-grid">
+
           ${displayedAlbumDays
             .map(day => {
               const count =
-                getAlbumCount(day.day);
+                getAlbumCount(
+                  day.day
+                );
 
               const cover =
-                getAlbumCover(day.day);
+                getAlbumCover(
+                  day.day
+                );
 
               const videoOnly =
                 !cover &&
-                albumHasVideo(day.day);
+                albumHasVideo(
+                  day.day
+                );
 
               return `
                 <button
@@ -1329,6 +1997,7 @@ async function renderMemoriesPage(
                   class="album-card"
                   data-day="${day.day}"
                 >
+
                   <div
                     class="album-cover ${
                       cover
@@ -1337,7 +2006,9 @@ async function renderMemoriesPage(
                     }"
                     style="${
                       cover
-                        ? `background-image: url('${escapeHTML(cover)}')`
+                        ? `background-image: url('${escapeHTML(
+                            cover
+                          )}')`
                         : ""
                     }"
                   >
@@ -1350,53 +2021,74 @@ async function renderMemoriesPage(
                     }
                   </div>
 
+
                   <div class="album-body">
+
                     <p>
-                      Day ${day.day}
+                      ${t.dayShort(
+                        day.day
+                      )}
                     </p>
 
                     <h3>
-                      ${escapeHTML(day.city)}
+                      ${escapeHTML(
+                        getLocalizedCity(
+                          day.city
+                        )
+                      )}
                     </h3>
 
                     <span>
                       ${count}
+
                       ${
                         count === 1
                           ? t.memory
                           : t.memories
                       }
                     </span>
+
                   </div>
+
                 </button>
               `;
             })
             .join("")}
+
         </div>
+
       </section>
 
 
       <section class="gallery-section">
+
         <div class="section-title">
+
           <h2>
             ${t.galleryTitle}
           </h2>
 
           <p>
             ${
-              selectedMemoryDay === "all"
+              selectedMemoryDay ===
+              "all"
+
                 ? t.allDays
+
                 : getDayTitle(
                     selectedMemoryDay
                   )
             }
           </p>
+
         </div>
+
 
         ${
           filteredMemories.length > 0
             ? `
                 <div class="memory-gallery">
+
                   ${filteredMemories
                     .map(memory => {
                       return renderMemoryCard(
@@ -1405,10 +2097,12 @@ async function renderMemoriesPage(
                       );
                     })
                     .join("")}
+
                 </div>
               `
             : `
                 <article class="empty-memories">
+
                   <h3>
                     ${t.noMemories}
                   </h3>
@@ -1416,16 +2110,21 @@ async function renderMemoriesPage(
                   <p>
                     ${t.noMemoriesDesc}
                   </p>
+
                 </article>
               `
         }
+
       </section>
+
     </section>
   `;
 
 
   document
-    .getElementById("memoryUploadForm")
+    .getElementById(
+      "memoryUploadForm"
+    )
     .addEventListener(
       "submit",
       async event => {
@@ -1467,7 +2166,9 @@ async function renderMemoriesPage(
             "memoryFiles"
           ).files;
 
-        uploadButton.disabled = true;
+        uploadButton.disabled =
+          true;
+
         uploadButton.textContent =
           t.uploading;
 
@@ -1486,7 +2187,9 @@ async function renderMemoriesPage(
             !uploaded &&
             uploadButton.isConnected
           ) {
-            uploadButton.disabled = false;
+            uploadButton.disabled =
+              false;
+
             uploadButton.textContent =
               t.uploadButton;
           }
@@ -1496,13 +2199,19 @@ async function renderMemoriesPage(
             error
           );
 
-          if (statusElement.isConnected) {
+          if (
+            statusElement.isConnected
+          ) {
             statusElement.textContent =
-              "Upload failed. Please check your internet connection and try again.";
+              t.uploadFailed;
           }
 
-          if (uploadButton.isConnected) {
-            uploadButton.disabled = false;
+          if (
+            uploadButton.isConnected
+          ) {
+            uploadButton.disabled =
+              false;
+
             uploadButton.textContent =
               t.uploadButton;
           }
@@ -1512,7 +2221,9 @@ async function renderMemoriesPage(
 
 
   container
-    .querySelectorAll(".album-filter")
+    .querySelectorAll(
+      ".album-filter"
+    )
     .forEach(button => {
       button.addEventListener(
         "click",
@@ -1522,7 +2233,8 @@ async function renderMemoriesPage(
           selectedMemoryDay =
             button.dataset.day;
 
-          activeMemoryAlbum = null;
+          activeMemoryAlbum =
+            null;
 
           await renderMemoriesPage(
             container
@@ -1533,13 +2245,17 @@ async function renderMemoriesPage(
 
 
   container
-    .querySelectorAll(".album-card")
+    .querySelectorAll(
+      ".album-card"
+    )
     .forEach(button => {
       button.addEventListener(
         "click",
         async () => {
           activeMemoryAlbum =
-            Number(button.dataset.day);
+            Number(
+              button.dataset.day
+            );
 
           await renderMemoriesPage(
             container
@@ -1551,7 +2267,9 @@ async function renderMemoriesPage(
     });
 
 
-  attachMemoryCardEvents(container);
+  attachMemoryCardEvents(
+    container
+  );
 
   restoreMemoriesScrollPosition();
 }
