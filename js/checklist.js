@@ -186,7 +186,9 @@ function getChecklistText() {
       electronics: "Electronics",
       health: "Health",
       roadtrip: "Road Trip",
-      custom: "Custom"
+      custom: "Custom",
+      deleteItem: "Delete item",
+      resetConfirm: "Reset all checked items?"
     },
 
     zh: {
@@ -205,7 +207,9 @@ function getChecklistText() {
       electronics: "电子用品",
       health: "健康用品",
       roadtrip: "自驾用品",
-      custom: "自定义"
+      custom: "自定义",
+      deleteItem: "删除项目",
+      resetConfirm: "确定要重置所有已勾选项目吗？"
     }
   }[language];
 }
@@ -357,7 +361,7 @@ function renderChecklistPage(container) {
                 <button
                   class="delete-custom-item"
                   data-id="${item.id}"
-                  title="Delete item"
+                  title="${t.deleteItem}"
                 >
                   ×
                 </button>
@@ -435,7 +439,7 @@ function renderChecklistPage(container) {
   });
 
   document.getElementById("resetChecklistBtn").addEventListener("click", () => {
-    const confirmReset = confirm("Reset all checked items?");
+    const confirmReset = confirm(t.resetConfirm);
 
     if (!confirmReset) {
       return;
