@@ -299,7 +299,7 @@
   display: grid;
   grid-template-columns:
     minmax(0, 1fr)
-    auto
+    46px
     minmax(0, 1fr);
 
   gap: 14px;
@@ -310,6 +310,7 @@
   width: 46px;
   height: 46px;
 
+  padding: 0;
   border: 0;
   border-radius: 50%;
 
@@ -318,6 +319,12 @@
 
   font-size: 22px;
   font-weight: 800;
+  line-height: 1;
+
+  display: grid;
+  place-items: center;
+
+  align-self: end;
 
   cursor: pointer;
   transition: 0.2s;
