@@ -931,3 +931,444 @@
     gap: 10px;
   }
 }
+
+/* ============================= */
+/* Mobile Layout V2 Polish */
+/* ============================= */
+
+@media (max-width: 760px) {
+  body {
+    background: #f5f3ee;
+  }
+
+  .page-content {
+    padding: 14px;
+    padding-bottom: 104px;
+  }
+
+  .home-page,
+  .itinerary-page,
+  .explore-page,
+  .trip-hub-page,
+  .checklist-page,
+  .memories-page {
+    gap: 16px;
+  }
+
+
+  /* Turn sidebar into bottom app-style nav */
+
+  .sidebar {
+    position: fixed;
+    top: auto;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+
+    width: auto;
+    height: auto;
+
+    padding: 8px;
+
+    display: block;
+
+    border: 1px solid rgba(23, 58, 47, 0.12);
+    border-radius: 26px;
+
+    background: rgba(255, 255, 255, 0.94);
+
+    box-shadow:
+      0 16px 40px
+      rgba(23, 58, 47, 0.18);
+
+    backdrop-filter: blur(18px);
+
+    z-index: 999;
+  }
+
+  .brand {
+    display: none;
+  }
+
+  .side-nav {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+
+    gap: 4px;
+
+    padding: 0;
+    overflow: visible;
+  }
+
+  .nav-item {
+    min-width: 0;
+    width: 100%;
+
+    padding: 8px 2px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    border-radius: 18px;
+
+    font-size: 10px;
+    line-height: 1.15;
+    font-weight: 700;
+
+    white-space: normal;
+    text-align: center;
+  }
+
+  .nav-item span {
+    font-size: 19px;
+    line-height: 1;
+  }
+
+  .nav-item.active {
+    background: #173a2f;
+    color: white;
+  }
+
+
+  /* Keep language button floating at the top */
+
+  .sidebar-bottom {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+
+    margin: 0;
+
+    display: block;
+
+    z-index: 1000;
+  }
+
+  #sidebarName {
+    display: none;
+  }
+
+  #sidebarLangBtn {
+    min-height: 36px;
+
+    padding: 8px 13px;
+
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.94);
+    color: #173a2f;
+
+    border: 1px solid rgba(23, 58, 47, 0.12);
+
+    box-shadow:
+      0 10px 28px
+      rgba(23, 58, 47, 0.14);
+
+    backdrop-filter: blur(14px);
+
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+
+  /* Make hero sections less huge on phone */
+
+  .home-hero {
+    min-height: 340px;
+
+    padding: 22px;
+
+    border-radius: 24px;
+  }
+
+  .hero-route {
+    top: 22px;
+    left: 22px;
+    right: 92px;
+
+    letter-spacing: 1.6px;
+    font-size: 10px;
+    line-height: 1.4;
+  }
+
+  .home-hero h1 {
+    font-size: 36px;
+    line-height: 1.06;
+    letter-spacing: -1px;
+  }
+
+  .home-hero-content p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .hero-btn {
+    width: auto;
+    min-height: 44px;
+
+    padding: 12px 18px;
+  }
+
+
+  /* Cards feel tighter and less blocky */
+
+  .stat-card,
+  .today-card,
+  .quick-card,
+  .timeline-card,
+  .info-card,
+  .places-card,
+  .explore-header,
+  .trip-hub-hero,
+  .hub-card,
+  .hotel-card,
+  .checklist-hero,
+  .checklist-card,
+  .memories-hero,
+  .memory-upload-card,
+  .memories-loading-card,
+  .empty-memories {
+    border-radius: 22px;
+  }
+
+  .stat-card {
+    padding: 16px;
+    gap: 13px;
+  }
+
+  .stat-icon,
+  .quick-icon,
+  .timeline-icon,
+  .hub-icon,
+  .card-icon {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 15px;
+
+    font-size: 21px;
+  }
+
+  .stat-card h3 {
+    font-size: 22px;
+  }
+
+
+  /* Home lower sections */
+
+  .today-card,
+  .quick-card {
+    padding: 18px;
+  }
+
+  .today-image {
+    height: 155px;
+    border-radius: 18px;
+  }
+
+  .today-main h3 {
+    font-size: 23px;
+  }
+
+  .timeline-step {
+    padding: 14px;
+  }
+
+  .quick-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .quick-item {
+    padding: 14px 8px;
+    border-radius: 18px;
+  }
+
+  .quick-item h3 {
+    font-size: 14px;
+  }
+
+  .quick-item p {
+    font-size: 12px;
+  }
+
+
+  /* Itinerary */
+
+  .itinerary-header h1,
+  .explore-header h1,
+  .trip-hub-hero h1,
+  .checklist-hero h1,
+  .memories-hero h1 {
+    font-size: 34px;
+  }
+
+  .day-hero {
+    min-height: 330px;
+    border-radius: 24px;
+  }
+
+  .day-overlay {
+    padding: 22px;
+  }
+
+  .day-hero h1 {
+    font-size: 36px;
+  }
+
+  .day-summary {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .day-pill {
+    width: 136px;
+    min-width: 136px;
+  }
+
+  .day-pill-image {
+    height: 64px;
+  }
+
+  .day-pill-content {
+    padding: 10px;
+  }
+
+  .day-pill span {
+    font-size: 12px;
+  }
+
+  .day-pill small {
+    font-size: 11px;
+  }
+
+
+  /* Explore */
+
+  .explore-header {
+    padding: 22px;
+  }
+
+  .explore-description {
+    font-size: 14px;
+  }
+
+  .explore-card-image {
+    height: 120px;
+  }
+
+  .explore-card-body {
+    padding: 16px;
+  }
+
+
+  /* Trip Hub */
+
+  .trip-hub-hero,
+  .checklist-hero,
+  .memories-hero {
+    padding: 22px;
+  }
+
+  .hub-card,
+  .hotel-card {
+    padding: 18px;
+  }
+
+  .flight-item {
+    gap: 10px;
+  }
+
+  .currency-result {
+    font-size: 1rem;
+  }
+
+
+  /* Checklist */
+
+  .progress-card {
+    padding: 18px;
+  }
+
+  .progress-card h2 {
+    font-size: 38px;
+  }
+
+  .checklist-item {
+    padding: 14px;
+  }
+
+  .checklist-item h3 {
+    font-size: 15px;
+  }
+
+  .checklist-item p {
+    font-size: 13px;
+  }
+
+
+  /* Memories */
+
+  .memory-trip-code {
+    padding: 16px;
+  }
+
+  .memory-trip-code strong {
+    font-size: 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .album-grid,
+  .memory-gallery,
+  .memory-album-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .album-cover {
+    height: 130px;
+  }
+
+  .memory-photo-card img,
+  .memory-video-preview video,
+  .memory-photo-card > video {
+    height: 210px;
+  }
+}
+
+
+@media (max-width: 420px) {
+  .page-content {
+    padding: 12px;
+    padding-bottom: 104px;
+  }
+
+  .home-hero {
+    min-height: 320px;
+  }
+
+  .home-hero h1 {
+    font-size: 32px;
+  }
+
+  .hero-btn {
+    width: 100%;
+  }
+
+  .nav-item {
+    font-size: 9px;
+  }
+
+  .nav-item span {
+    font-size: 18px;
+  }
+
+  .quick-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

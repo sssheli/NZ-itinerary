@@ -1,4 +1,39 @@
-let selectedDay = 0;
+function getCurrentTripDayIndex() {
+  const tripStartDate =
+    new Date(2026, 8, 10);
+
+  const today =
+    new Date();
+
+  const startOfToday =
+    new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate()
+    );
+
+  const difference =
+    startOfToday - tripStartDate;
+
+  const dayIndex =
+    Math.floor(
+      difference /
+      (1000 * 60 * 60 * 24)
+    );
+
+  if (dayIndex < 0) {
+    return 0;
+  }
+
+  if (dayIndex >= tripData.days.length) {
+    return tripData.days.length - 1;
+  }
+
+  return dayIndex;
+}
+
+
+let selectedDay = getCurrentTripDayIndex();
 let daySelectorScrollPosition = 0;
 
 
