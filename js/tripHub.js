@@ -158,7 +158,10 @@ function getTripHubText() {
         "This is a reference exchange rate. Banks and card providers may use a different rate.",
 
       invalidAmount:
-        "Enter a valid amount."
+        "Enter a valid amount.",
+
+      swapCurrencies:
+        "Swap currencies",
     },
 
     zh: {
@@ -316,7 +319,10 @@ function getTripHubText() {
         "此为参考汇率，银行和信用卡公司实际使用的汇率可能不同。",
 
       invalidAmount:
-        "请输入有效金额。"
+        "请输入有效金额。",
+
+      swapCurrencies:
+        "切换货币",
     }
   };
 
@@ -1105,7 +1111,7 @@ function renderTripHubPage(container) {
                 type="button"
                 class="currency-swap-btn"
                 id="currencySwapBtn"
-                aria-label="Swap currencies"
+                aria-label="${t.swapCurrencies}"
               >
                 ⇄
               </button>

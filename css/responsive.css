@@ -1,11 +1,7 @@
 /* Large laptops */
 @media (max-width: 1400px) {
-  .app-shell {
-    grid-template-columns: 230px minmax(0, 1fr);
-  }
-
   .page-content {
-    padding: 28px;
+    padding: 26px;
   }
 
   .home-hero {
@@ -25,24 +21,913 @@
   }
 }
 
-/* Phones */
-@media (max-width: 760px) {
-  .app-shell {
-    grid-template-columns: 1fr;
+
+/* Tablets */
+@media (max-width: 1000px) {
+  .page-content {
+    padding: 22px;
   }
 
+  .home-page,
+  .itinerary-page,
+  .explore-page,
+  .trip-hub-page,
+  .checklist-page,
+  .memories-page {
+    gap: 22px;
+  }
+}
+
+
+/* Phones */
+@media (max-width: 760px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  button,
+  input,
+  select {
+    touch-action: manipulation;
+  }
+
+  .app-shell {
+    display: block;
+    overflow-x: clip;
+  }
+
+
+  /* Compact mobile navigation */
+
   .sidebar {
-    position: static;
+    position: sticky;
+    top: 0;
+    left: auto;
+
+    width: 100%;
     height: auto;
+
+    padding: 10px 12px 8px;
+
+    display: grid;
+    gap: 8px;
+
+    background: rgba(255, 255, 255, 0.96);
+    border-right: 0;
+    border-bottom: 1px solid #e5e7eb;
+
+    box-shadow:
+      0 8px 24px
+      rgba(15, 42, 33, 0.08);
+
+    backdrop-filter: blur(14px);
+
+    z-index: 100;
+  }
+
+  .sidebar > div:first-child {
+    min-width: 0;
+  }
+
+  .brand {
+    min-height: 36px;
+    margin: 0 112px 8px 0;
+    gap: 8px;
+  }
+
+  .brand-icon {
+    font-size: 24px;
+  }
+
+  .brand h2 {
+    font-size: 16px;
+  }
+
+  .brand p {
+    display: none;
+  }
+
+  .side-nav {
+    display: flex;
+    gap: 8px;
+
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+
+    scrollbar-width: none;
+
+    padding: 2px 0 4px;
+  }
+
+  .side-nav::-webkit-scrollbar,
+  .album-filter-row::-webkit-scrollbar,
+  .category-filter::-webkit-scrollbar,
+  .checklist-filters::-webkit-scrollbar,
+  .day-selector::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-item {
+    flex: 0 0 auto;
+
+    width: auto;
+    min-width: 78px;
+
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 3px;
+
+    padding: 8px 10px;
+    border-radius: 14px;
+
+    font-size: 11px;
+    line-height: 1.15;
+
+    white-space: nowrap;
+  }
+
+  .nav-item span {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .sidebar-bottom {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+  }
+
+  #sidebarName {
+    display: none;
+  }
+
+  #sidebarLangBtn {
+    min-height: 36px;
+
+    padding: 8px 12px;
+    border-radius: 999px;
+
+    font-size: 12px;
+
+    white-space: nowrap;
   }
 
   .page-content {
-    padding: 18px;
+    margin-left: 0;
+
+    padding: 16px;
+    padding-bottom: 34px;
+  }
+
+  .home-page,
+  .itinerary-page,
+  .explore-page,
+  .trip-hub-page,
+  .checklist-page,
+  .memories-page {
+    gap: 18px;
+  }
+
+
+  /* Onboarding */
+
+  .onboarding {
+    padding: 16px;
+  }
+
+  .card {
+    padding: 28px 20px;
+    border-radius: 24px;
+  }
+
+  .card h1 {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .btn-row {
+    flex-direction: column;
+  }
+
+  .btn-row button,
+  #continueBtn,
+  #startJourneyBtn,
+  #getStartedBtn {
+    width: 100%;
+  }
+
+
+  /* Home */
+
+  .home-hero {
+    min-height: 440px;
+
+    padding: 24px;
+    border-radius: 22px;
+  }
+
+  .hero-route {
+    top: 22px;
+    left: 24px;
+    right: 24px;
+
+    letter-spacing: 2px;
+    font-size: 10px;
+  }
+
+  .home-hero h1 {
+    margin: 14px 0;
+
+    font-size:
+      clamp(34px, 10vw, 42px);
+
+    line-height: 1.08;
+    letter-spacing: -1px;
+  }
+
+  .home-hero-content p {
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+
+  .hero-btn {
+    width: 100%;
   }
 
   .home-stats,
-  .home-lower-grid,
+  .home-lower-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat-card {
+    padding: 18px;
+
+    gap: 14px;
+
+    border-radius: 20px;
+  }
+
+  .stat-icon,
+  .quick-icon,
+  .timeline-icon {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 16px;
+
+    font-size: 23px;
+  }
+
+  .stat-card h3 {
+    font-size: 24px;
+  }
+
+  .today-card,
+  .quick-card {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 8px;
+
+    margin-bottom: 18px;
+  }
+
+  .section-header button {
+    min-height: 40px;
+    padding: 8px 0;
+  }
+
+  .today-main {
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+  }
+
+  .today-image {
+    width: 100%;
+    height: 180px;
+  }
+
+  .today-main h3 {
+    font-size: 24px;
+  }
+
+  .today-timeline {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .timeline-arrow {
+    display: none;
+  }
+
+  .timeline-step {
+    width: 100%;
+
+    padding: 16px;
+
+    border-radius: 18px;
+
+    background: #f8f7f4;
+  }
+
+  .timeline-step h4 {
+    min-height: 0;
+  }
+
+  .quick-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+  }
+
+  .quick-item {
+    min-width: 0;
+    padding: 16px 10px;
+  }
+
+
+  /* Itinerary */
+
+  .itinerary-header {
+    align-items: flex-start;
+  }
+
+  .itinerary-header h1 {
+    font-size: 38px;
+    line-height: 1.05;
+  }
+
+  .itinerary-subtitle {
+    font-size: 0.72rem;
+    line-height: 1.5;
+  }
+
+  .day-selector {
+    margin-inline: -16px;
+
+    padding:
+      0
+      16px
+      8px;
+
+    scroll-snap-type:
+      x proximity;
+
+    scrollbar-width: none;
+  }
+
+  .day-pill {
+    width: 148px;
+    min-width: 148px;
+
+    border-radius: 18px;
+
+    scroll-snap-align: start;
+  }
+
+  .day-pill-image {
+    height: 72px;
+  }
+
+  .day-pill-content {
+    padding: 12px;
+  }
+
+  .day-pill span {
+    font-size: 13px;
+  }
+
+  .day-hero {
+    min-height: 430px;
+    border-radius: 22px;
+  }
+
+  .day-overlay {
+    padding: 24px;
+
+    justify-content: flex-end;
+
+    background:
+      linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.76) 0%,
+        rgba(0, 0, 0, 0.48) 52%,
+        rgba(0, 0, 0, 0.1) 100%
+      );
+  }
+
+  .day-weekday {
+    letter-spacing: 2px;
+    font-size: 12px;
+  }
+
+  .day-hero h2 {
+    font-size: 17px;
+  }
+
+  .day-hero h1 {
+    font-size: 40px;
+  }
+
+  .day-summary {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .timeline-card,
+  .info-card,
+  .places-card {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .section-title {
+    margin-bottom: 20px;
+  }
+
+  .timeline-list {
+    gap: 22px;
+  }
+
+  .timeline-item {
+    grid-template-columns:
+      46px
+      minmax(0, 1fr);
+
+    column-gap: 12px;
+
+    align-items: start;
+  }
+
+  .timeline-time {
+    grid-column: 2;
+    grid-row: 1;
+
+    margin-bottom: 4px;
+
+    font-size: 12px;
+  }
+
+  .timeline-dot {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+
+    width: 40px;
+    height: 40px;
+
+    font-size: 19px;
+  }
+
+  .timeline-content {
+    grid-column: 2;
+    grid-row: 2;
+
+    min-width: 0;
+  }
+
+  .timeline-content h3 {
+    font-size: 17px;
+    overflow-wrap: anywhere;
+  }
+
+  .timeline-content p {
+    font-size: 14px;
+  }
+
+  .card-header {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 15px;
+
+    font-size: 23px;
+  }
+
+  .card-header h2,
+  .info-card h3,
+  .place-item h3,
+  .hotel-card h3 {
+    overflow-wrap: anywhere;
+  }
+
+  .card-header h2 {
+    font-size: 18px;
+  }
+
+  .info-row {
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .info-row strong {
+    text-align: right;
+  }
+
+  .place-item {
+    padding: 18px;
+  }
+
+  .place-item a,
+  .map-link {
+    min-height: 44px;
+
+    display: inline-flex;
+    align-items: center;
+  }
+
+
+  /* Explore */
+
+  .explore-header {
+    padding: 24px;
+    border-radius: 22px;
+  }
+
+  .explore-header h1 {
+    font-size: 36px;
+    line-height: 1.1;
+  }
+
+  .explore-search input {
+    margin-top: 0;
+    padding: 16px 18px;
+  }
+
+  .category-filter,
+  .checklist-filters {
+    flex-wrap: nowrap;
+
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+
+    scrollbar-width: none;
+
+    margin-inline: -16px;
+
+    padding:
+      0
+      16px
+      6px;
+  }
+
+  .category-pill,
+  .checklist-filter {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .explore-grid {
+    gap: 14px;
+  }
+
+  .explore-card-image {
+    height: 140px;
+  }
+
+  .explore-card-body {
+    padding: 18px;
+  }
+
+
+  /* Trip Hub */
+
+  .trip-hub-hero,
+  .checklist-hero,
+  .memories-hero {
+    padding: 24px;
+    border-radius: 22px;
+  }
+
+  .trip-hub-hero h1,
+  .checklist-hero h1,
+  .memories-hero h1 {
+    font-size: 38px;
+    line-height: 1.08;
+  }
+
+  .hub-grid,
+  .bottom-grid,
+  .hotel-grid {
+    gap: 14px;
+  }
+
+  .hub-card,
+  .hotel-card {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .hub-card-header {
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .hub-icon {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 15px;
+
+    font-size: 1.3rem;
+
+    flex-shrink: 0;
+  }
+
+  .flight-item {
+    padding: 14px;
+  }
+
+  .currency-converter input,
+  .currency-converter select {
+    margin-top: 0;
+  }
+
+  .currency-select-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .currency-swap-btn {
+    justify-self: center;
+
+    transform: rotate(90deg);
+  }
+
+  .currency-swap-btn:hover {
+    transform:
+      rotate(90deg)
+      translateX(-2px);
+  }
+
+  .currency-result {
+    padding: 16px;
+
+    font-size: 1.08rem;
+
+    overflow-wrap: anywhere;
+  }
+
+
+  /* Checklist */
+
+  .checklist-hero {
+    gap: 18px;
+  }
+
+  .progress-card {
+    width: 100%;
+    min-width: 0;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+  }
+
+  .progress-card h2 {
+    font-size: 44px;
+  }
+
+  .add-checklist-form {
+    flex-direction: column;
+  }
+
+  .add-checklist-form input {
+    margin-top: 0;
+  }
+
+  .add-checklist-form button {
+    min-height: 48px;
+    padding: 14px 18px;
+  }
+
+  .checklist-card {
+    padding: 16px;
+    border-radius: 22px;
+  }
+
+  .checklist-list {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .checklist-item {
+    padding: 16px;
+  }
+
+  .checklist-item label {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .checklist-item-icon {
+    width: 44px;
+    height: 44px;
+
+    border-radius: 14px;
+  }
+
+  .checklist-item h3 {
+    font-size: 16px;
+  }
+
+  .reset-checklist-btn {
+    justify-self: stretch;
+
+    min-height: 46px;
+
+    padding: 12px 16px;
+
+    border-radius: 14px;
+
+    background: #fff1f1;
+
+    text-align: center;
+  }
+
+
+  /* Memories */
+
+  .memories-hero {
+    gap: 18px;
+  }
+
+  .memory-trip-code {
+    width: 100%;
+    min-width: 0;
+
+    padding: 18px;
+
+    box-sizing: border-box;
+  }
+
+  .memory-trip-code strong {
+    font-size: 28px;
+  }
+
+  .memories-loading-card,
+  .memory-upload-card,
+  .empty-memories {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .memory-upload-form input,
+  .memory-upload-form select {
+    width: 100%;
+    min-width: 0;
+
+    margin-top: 0;
+  }
+
+  .memory-upload-form button {
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .album-filter-row {
+    margin-inline: -16px;
+
+    padding:
+      0
+      16px
+      6px;
+
+    scrollbar-width: none;
+  }
+
+  .album-card,
+  .memory-photo-card {
+    border-radius: 20px;
+  }
+
+  .memory-photo-card img,
+  .memory-video-preview video,
+  .memory-photo-card > video {
+    height: 220px;
+  }
+
+  .memory-modal {
+    padding: 12px;
+  }
+
+  .memory-modal-content {
+    width: 100%;
+    max-width: 100%;
+
+    max-height:
+      calc(100vh - 24px);
+
+    border-radius: 20px;
+
+    grid-template-columns: 1fr;
+
+    overflow-y: auto;
+  }
+
+  .memory-modal-content img,
+  .memory-modal-media {
+    width: 100%;
+    height: auto;
+
+    max-height: 52vh;
+
+    object-fit: contain;
+  }
+
+  .memory-modal-info {
+    padding: 20px;
+  }
+
+  .memory-modal-delete {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  .memory-album-hero,
+  .memory-album-overlay {
+    min-height: 300px;
+  }
+
+  .memory-album-hero {
+    border-radius: 22px;
+  }
+
+  .memory-album-overlay {
+    padding: 22px;
+  }
+
+  .memory-album-overlay h1 {
+    font-size: 36px;
+  }
+}
+
+
+/* Very small phones */
+@media (max-width: 420px) {
+  .page-content {
+    padding: 12px;
+    padding-bottom: 28px;
+  }
+
+  .brand {
+    margin-right: 102px;
+  }
+
+  .nav-item {
+    min-width: 72px;
+    padding-inline: 8px;
+  }
+
+  .home-hero,
+  .day-hero {
+    min-height: 410px;
+  }
+
   .quick-grid {
     grid-template-columns: 1fr;
+  }
+
+  .today-image {
+    height: 160px;
+  }
+
+  .trip-hub-hero h1,
+  .checklist-hero h1,
+  .memories-hero h1,
+  .itinerary-header h1,
+  .explore-header h1 {
+    font-size: 34px;
+  }
+
+  .currency-select-row {
+    gap: 10px;
   }
 }
